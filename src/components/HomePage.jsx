@@ -55,7 +55,7 @@ export default function HomePage({ onNavigateToDonation }) {
             <div className="flex items-center space-x-4">
               <div className="w-32 h-20 overflow-hidden shadow-lg bg-white rounded-lg">
                 <img
-                  src="./src/assets/devi-mata-logo.jpeg"
+                  src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
                   className="w-full h-full object-cover"
                 />
@@ -172,7 +172,7 @@ export default function HomePage({ onNavigateToDonation }) {
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full blur-3xl opacity-40 animate-pulse"></div>
                 <div className="relative z-10 lg:-mt-10 lg:ml-40 bg-white/10 backdrop-blur-sm rounded-3xl p-8 border-4 border-yellow-400/50 shadow-2xl w-full max-w-full sm:max-w-md lg:max-w-sm">
                   <img
-                    src="./src/assets/bhandarwada-devi-home-page.jpg"
+                    src="/assets/bhandarwada-devi-home-page.jpg"
                     alt="देवी माता"
                     className="max-h-[450px] w-full object-contain drop-shadow-2xl rounded-2xl"
                   />
@@ -220,7 +220,7 @@ export default function HomePage({ onNavigateToDonation }) {
             <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
               <div className="aspect-square overflow-hidden">
                 <img
-                  src="./src/assets/card-1.jpg"
+                  src="/assets/card-1.jpg"
                   alt=""
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
@@ -231,7 +231,7 @@ export default function HomePage({ onNavigateToDonation }) {
             <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
               <div className="aspect-square overflow-hidden">
                 <img
-                  src="./src/assets/card-4.jpg"
+                  src="/assets/card-4.jpg"
                   alt="१९८५ - दशक उत्सव"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
@@ -242,7 +242,7 @@ export default function HomePage({ onNavigateToDonation }) {
             <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
               <div className="aspect-square overflow-hidden">
                 <img
-                  src="./src/assets/card-3.jpg"
+                  src="/assets/card-3.jpg"
                   alt="१९९५ - रजत महोत्सव"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
@@ -253,7 +253,7 @@ export default function HomePage({ onNavigateToDonation }) {
             <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
               <div className="aspect-square overflow-hidden">
                 <img
-                  src="./src/assets/card-5.jpg"
+                  src="/assets/card-5.jpg"
                   alt="२००५ - नवीन मंडप"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
@@ -264,7 +264,7 @@ export default function HomePage({ onNavigateToDonation }) {
             <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
               <div className="aspect-square overflow-hidden">
                 <img
-                  src="./src/assets/card-6.jpg"
+                  src="/assets/card-6.jpg"
                   alt="२०१५ - डिजिटल युग"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
@@ -275,7 +275,7 @@ export default function HomePage({ onNavigateToDonation }) {
             <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
               <div className="aspect-square overflow-hidden">
                 <img
-                  src="./src/assets/card-2.jpg"
+                  src="/assets/card-2.jpg"
                   alt="२०२० - कोविड काळ"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
@@ -341,7 +341,7 @@ export default function HomePage({ onNavigateToDonation }) {
             <div className="flex items-center justify-center space-x-6 mb-8">
               <div className="w-24 h-16 overflow-hidden shadow-lg bg-white rounded-lg">
                 <img
-                  src="./src/assets/devi-mata-logo.jpeg"
+                  src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
                   className="w-full h-full object-cover"
                 />

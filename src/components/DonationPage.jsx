@@ -40,7 +40,7 @@ export default function DonationPage({ onNavigateToHome }) {
             <div className="flex items-center space-x-4">
               <div className="w-32 h-20 overflow-hidden shadow-lg bg-white rounded-lg">
                 <img
-                  src="./src/assets/devi-mata-logo.jpeg"
+                  src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
                   className="w-full h-full object-cover"
                 />
@@ -206,7 +206,7 @@ export default function DonationPage({ onNavigateToHome }) {
             <div className="flex items-center justify-center space-x-6 mb-8">
               <div className="w-24 h-16 overflow-hidden shadow-lg bg-white rounded-lg">
                 <img
-                  src="./src/assets/devi-mata-logo.jpeg"
+                  src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
                   className="w-full h-full object-cover"
                 />
