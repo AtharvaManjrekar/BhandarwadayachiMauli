@@ -53,13 +53,14 @@ export default function HomePage({ onNavigateToDonation }) {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-32 h-20 overflow-hidden shadow-lg bg-white rounded-lg">
+              <div className="w-36 h-28 bg-red-800/90 rounded-lg shadow-lg overflow-hidden flex items-center justify-center">
                 <img
                   src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
-                  className="w-full h-full object-cover"
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
+
               <div className="text-white">
                 <h1 className="text-xl md:text-2xl font-bold devanagari-font">
                   भंडारवाडा नवरात्रौत्सव मंडळ
