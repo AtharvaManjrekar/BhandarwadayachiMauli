@@ -49,11 +49,11 @@ export default function HomePage({ onNavigateToDonation }) {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-20 bg-red-800/90 backdrop-blur-sm border-b-4 border-yellow-400">
+      <nav className="relative z-20bg-gradient-to-r from-orange-500 to-yellow-600 backdrop-blur-sm border-b-4 border-yellow-400">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-36 h-28 bg-red-800/90 rounded-lg shadow-lg overflow-hidden flex items-center justify-center">
+              <div className="w-36 h-28  rounded-lg overflow-hidden flex items-center justify-center">
                 <img
                   src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
@@ -336,17 +336,18 @@ export default function HomePage({ onNavigateToDonation }) {
       </section>
 
       {/* Footer */}
-      <footer className="bg-red-900 text-white py-12 relative z-10">
+      <footer className="bg-gradient-to-r from-purple-800 to-indigo-800 text-white py-12 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-6 mb-8">
-              <div className="w-24 h-16 overflow-hidden shadow-lg bg-white rounded-lg">
+              <div className="inline-block overflow-visible">
                 <img
                   src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
-                  className="w-full h-full object-cover"
+                  className="block max-w-[110px] h-auto"
                 />
               </div>
+
               <h3 className="text-2xl font-bold devanagari-font">
                 भंडारवाडा नवरात्रौत्सव मंडळ ❤️
               </h3>
