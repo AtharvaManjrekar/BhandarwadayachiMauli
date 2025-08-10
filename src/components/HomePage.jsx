@@ -11,9 +11,10 @@ import {
   Sparkles,
   Heart,
   DollarSign,
+  ArrowRight,
 } from "lucide-react";
 
-export default function HomePage({ onNavigateToDonation }) {
+export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -49,18 +50,17 @@ export default function HomePage({ onNavigateToDonation }) {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-20bg-gradient-to-r from-orange-500 to-yellow-600 backdrop-blur-sm border-b-4 border-yellow-400">
+      <nav className="relative z-20 bg-gradient-to-r from-orange-500 to-yellow-600 backdrop-blur-sm border-b-4 border-yellow-400">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-36 h-28  rounded-lg overflow-hidden flex items-center justify-center">
+              <div className="w-36 h-28 rounded-lg overflow-hidden flex items-center justify-center">
                 <img
                   src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
-
               <div className="text-white">
                 <h1 className="text-xl md:text-2xl font-bold devanagari-font">
                   भंडारवाडा नवरात्रौत्सव मंडळ
@@ -107,7 +107,6 @@ export default function HomePage({ onNavigateToDonation }) {
                   || श्री ब्राह्मणदेव प्रसन्न ||
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-8 mb-10 text-white">
                 <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
                   <MapPin className="w-6 h-6 text-yellow-400" />
@@ -122,7 +121,6 @@ export default function HomePage({ onNavigateToDonation }) {
                   </span>
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
                 <Button
                   size="lg"
@@ -161,7 +159,6 @@ export default function HomePage({ onNavigateToDonation }) {
                 </Button>
               </div>
             </div>
-
             <div
               className={`relative transition-all duration-1000 delay-300 ${
                 isVisible
@@ -216,87 +213,198 @@ export default function HomePage({ onNavigateToDonation }) {
           <h2 className="text-4xl font-bold text-center text-white mb-12 devanagari-font">
             जुन्या आठवणी
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Memory Card 1 */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
-              <div className="aspect-square overflow-hidden">
+
+          {/* Horizontal Image Rail */}
+          <div className="relative max-w-7xl mx-auto">
+            <div
+              className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4"
+              id="memoryRail"
+            >
+              {/* Memory Image 1 */}
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
                 <img
                   src="/assets/card-1.jpg"
-                  alt=""
+                  alt="स्थापना वर्ष"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold text-yellow-300 devanagari-font mb-2">
+                      स्थापना वर्ष
+                    </h3>
+                    <p className="text-xl text-white devanagari-font font-semibold">
+                      १९७६
+                    </p>
+                    <p className="text-sm text-white/80 devanagari-font mt-2">
+                      आमच्या मंडळाची सुरुवात
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* Memory Card 2 */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
-              <div className="aspect-square overflow-hidden">
+              {/* Memory Image 2 */}
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
                 <img
                   src="/assets/card-4.jpg"
-                  alt="१९८५ - दशक उत्सव"
+                  alt="दशक उत्सव"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold text-cyan-300 devanagari-font mb-2">
+                      दशक उत्सव
+                    </h3>
+                    <p className="text-xl text-white devanagari-font font-semibold">
+                      १९८५
+                    </p>
+                    <p className="text-sm text-white/80 devanagari-font mt-2">
+                      पहिला मोठा उत्सव
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* Memory Card 3 */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
-              <div className="aspect-square overflow-hidden">
+              {/* Memory Image 3 */}
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
                 <img
                   src="/assets/card-3.jpg"
-                  alt="१९९५ - रजत महोत्सव"
+                  alt="रजत महोत्सव"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold text-pink-300 devanagari-font mb-2">
+                      रजत महोत्सव
+                    </h3>
+                    <p className="text-xl text-white devanagari-font font-semibold">
+                      १९९५
+                    </p>
+                    <p className="text-sm text-white/80 devanagari-font mt-2">
+                      २५ वर्षांचा प्रवास
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* Memory Card 4 */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
-              <div className="aspect-square overflow-hidden">
+              {/* Memory Image 4 */}
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
                 <img
                   src="/assets/card-5.jpg"
-                  alt="२००५ - नवीन मंडप"
+                  alt="नवीन मंडप"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold text-emerald-300 devanagari-font mb-2">
+                      नवीन मंडप
+                    </h3>
+                    <p className="text-xl text-white devanagari-font font-semibold">
+                      २००५
+                    </p>
+                    <p className="text-sm text-white/80 devanagari-font mt-2">
+                      भव्य मंडप निर्माण
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* Memory Card 5 */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
-              <div className="aspect-square overflow-hidden">
+              {/* Memory Image 5 */}
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
                 <img
                   src="/assets/card-6.jpg"
-                  alt="२०१५ - डिजिटल युग"
+                  alt="डिजिटल युग"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold text-violet-300 devanagari-font mb-2">
+                      डिजिटल युग
+                    </h3>
+                    <p className="text-xl text-white devanagari-font font-semibold">
+                      २०१५
+                    </p>
+                    <p className="text-sm text-white/80 devanagari-font mt-2">
+                      ऑनलाइन उपस्थिती
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* Memory Card 6 */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
-              <div className="aspect-square overflow-hidden">
+              {/* Memory Image 6 */}
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
                 <img
                   src="/assets/card-2.jpg"
-                  alt="२०२० - कोविड काळ"
+                  alt="सुवर्ण महोत्सव"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold text-orange-300 devanagari-font mb-2">
+                      सुवर्ण महोत्सव
+                    </h3>
+                    <p className="text-xl text-white devanagari-font font-semibold">
+                      २०२४
+                    </p>
+                    <p className="text-sm text-white/80 devanagari-font mt-2">
+                      ५० वर्षांचा उत्सव
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* View More Button Card - Inside the Rail */}
+              <div
+                className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group"
+                onClick={onNavigateToAlbum}
+              >
+                <div className="text-center p-8">
+                  <div className="mb-6">
+                    <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-white/30 transition-all duration-300">
+                      <ArrowRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4 devanagari-font">
+                    सर्व आठवणी पहा
+                  </h3>
+                  <p className="text-white/90 devanagari-font text-lg">
+                    ५० वर्षांची संपूर्ण गॅलरी
+                  </p>
+                  <div className="mt-4 flex items-center justify-center space-x-2">
+                    <Heart className="w-5 h-5 text-pink-200" />
+                    <span className="text-white/80 devanagari-font text-sm">
+                      अधिक फोटो
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* View More Button */}
-          <div className="text-center mt-12">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-xl transform hover:scale-105 transition-all duration-300 devanagari-font text-lg px-8 py-4"
-              onClick={() => {
-                // You can add functionality to show more memories or open a gallery
-                alert("अधिक आठवणी लवकरच येत आहेत!");
-              }}
-            >
-              <Heart className="w-6 h-6 mr-3" />
-              अधिक आठवणी पहा
-            </Button>
+            {/* Scroll Navigation Dots */}
+            <div className="flex justify-center mt-8 space-x-3">
+              <button
+                className="w-3 h-3 bg-yellow-400 rounded-full opacity-60 hover:opacity-100 transition-opacity duration-300"
+                onClick={() =>
+                  (document.getElementById("memoryRail").scrollLeft = 0)
+                }
+              ></button>
+              <button
+                className="w-3 h-3 bg-yellow-400 rounded-full opacity-40 hover:opacity-100 transition-opacity duration-300"
+                onClick={() =>
+                  (document.getElementById("memoryRail").scrollLeft = 400)
+                }
+              ></button>
+              <button
+                className="w-3 h-3 bg-yellow-400 rounded-full opacity-40 hover:opacity-100 transition-opacity duration-300"
+                onClick={() =>
+                  (document.getElementById("memoryRail").scrollLeft = 800)
+                }
+              ></button>
+              <button
+                className="w-3 h-3 bg-yellow-400 rounded-full opacity-40 hover:opacity-100 transition-opacity duration-300"
+                onClick={() =>
+                  (document.getElementById("memoryRail").scrollLeft = 1200)
+                }
+              ></button>
+            </div>
           </div>
         </div>
       </section>
@@ -347,7 +455,6 @@ export default function HomePage({ onNavigateToDonation }) {
                   className="block max-w-[110px] h-auto"
                 />
               </div>
-
               <h3 className="text-2xl font-bold devanagari-font">
                 भंडारवाडा नवरात्रौत्सव मंडळ ❤️
               </h3>

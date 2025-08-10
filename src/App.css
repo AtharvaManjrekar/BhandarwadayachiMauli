@@ -1,42 +1,222 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Noto Sans Devanagari", "Mukti", "Gargi", "Lohit Devanagari", system-ui, sans-serif;
+  }
 }
 
-@keyframes logo-spin {
+/* Custom animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes diya-flicker {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-diya {
+  animation: diya-flicker 2s ease-in-out infinite;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom gradient text */
+.gradient-text {
+  background: linear-gradient(45deg, #f59e0b, #ef4444, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Devanagari font class */
+.devanagari-font {
+  font-family: "Noto Sans Devanagari", "Mukti", "Gargi", "Lohit Devanagari", system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 640px) {
+  .devanagari-font {
+    line-height: 1.3;
+  }
+}
+
+/* Hide scrollbar for horizontal rail - Enhanced and Complete */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.scrollbar-hide::-webkit-scrollbar-track {
+  display: none !important;
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  display: none !important;
+}
+
+.scrollbar-hide::-webkit-scrollbar-corner {
+  display: none !important;
+}
+
+/* Additional fallback for stubborn scrollbars */
+.scrollbar-hide {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: transparent transparent; /* Firefox fallback */
+}
+
+/* Force hide on the specific rail container */
+#memoryRail {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+#memoryRail::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Rangoli pattern background */
+.rangoli-pattern {
+  background-image: radial-gradient(circle at 25% 25%, #fbbf24 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, #f59e0b 0%, transparent 50%),
+    radial-gradient(circle at 75% 25%, #ef4444 0%, transparent 50%),
+    radial-gradient(circle at 25% 75%, #ec4899 0%, transparent 50%);
+}
+
+/* Custom rail animations */
+@keyframes slideIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateX(50px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.memory-rail-item {
+  animation: slideIn 0.6s ease-out forwards;
+}
+
+.memory-rail-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.memory-rail-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.memory-rail-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.memory-rail-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.memory-rail-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.memory-rail-item:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* Mobile responsive adjustments for rail */
+@media (max-width: 768px) {
+  .memory-rail-item {
+    width: 280px !important;
+    height: 280px !important;
   }
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+@media (max-width: 640px) {
+  .memory-rail-item {
+    width: 240px !important;
+    height: 240px !important;
+  }
 }
