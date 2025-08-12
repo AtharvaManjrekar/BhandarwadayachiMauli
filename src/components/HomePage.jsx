@@ -227,19 +227,6 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   alt="स्थापना वर्ष"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-yellow-300 devanagari-font mb-2">
-                      स्थापना वर्ष
-                    </h3>
-                    <p className="text-xl text-white devanagari-font font-semibold">
-                      १९७६
-                    </p>
-                    <p className="text-sm text-white/80 devanagari-font mt-2">
-                      आमच्या मंडळाची सुरुवात
-                    </p>
-                  </div>
-                </div>
               </div>
 
               {/* Memory Image 2 */}
@@ -249,19 +236,6 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   alt="दशक उत्सव"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-cyan-300 devanagari-font mb-2">
-                      दशक उत्सव
-                    </h3>
-                    <p className="text-xl text-white devanagari-font font-semibold">
-                      १९८५
-                    </p>
-                    <p className="text-sm text-white/80 devanagari-font mt-2">
-                      पहिला मोठा उत्सव
-                    </p>
-                  </div>
-                </div>
               </div>
 
               {/* Memory Image 3 */}
@@ -271,19 +245,6 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   alt="रजत महोत्सव"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-pink-300 devanagari-font mb-2">
-                      रजत महोत्सव
-                    </h3>
-                    <p className="text-xl text-white devanagari-font font-semibold">
-                      १९९५
-                    </p>
-                    <p className="text-sm text-white/80 devanagari-font mt-2">
-                      २५ वर्षांचा प्रवास
-                    </p>
-                  </div>
-                </div>
               </div>
 
               {/* Memory Image 4 */}
@@ -293,19 +254,6 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   alt="नवीन मंडप"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-emerald-300 devanagari-font mb-2">
-                      नवीन मंडप
-                    </h3>
-                    <p className="text-xl text-white devanagari-font font-semibold">
-                      २००५
-                    </p>
-                    <p className="text-sm text-white/80 devanagari-font mt-2">
-                      भव्य मंडप निर्माण
-                    </p>
-                  </div>
-                </div>
               </div>
 
               {/* Memory Image 5 */}
@@ -315,19 +263,6 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   alt="डिजिटल युग"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-violet-300 devanagari-font mb-2">
-                      डिजिटल युग
-                    </h3>
-                    <p className="text-xl text-white devanagari-font font-semibold">
-                      २०१५
-                    </p>
-                    <p className="text-sm text-white/80 devanagari-font mt-2">
-                      ऑनलाइन उपस्थिती
-                    </p>
-                  </div>
-                </div>
               </div>
 
               {/* Memory Image 6 */}
@@ -337,19 +272,6 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   alt="सुवर्ण महोत्सव"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-orange-300 devanagari-font mb-2">
-                      सुवर्ण महोत्सव
-                    </h3>
-                    <p className="text-xl text-white devanagari-font font-semibold">
-                      २०२४
-                    </p>
-                    <p className="text-sm text-white/80 devanagari-font mt-2">
-                      ५० वर्षांचा उत्सव
-                    </p>
-                  </div>
-                </div>
               </div>
 
               {/* View More Button Card - Inside the Rail */}
