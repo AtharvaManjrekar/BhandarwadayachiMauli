@@ -18,9 +18,13 @@ import {
 export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
   const [isVisible, setIsVisible] = useState(false);
   const railRef = useRef(null);
+  const govindaRailRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeGovindaIndex, setActiveGovindaIndex] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
+  const [totalGovindaSlides, setTotalGovindaSlides] = useState(0);
   const slideMetricsRef = useRef({ slideSize: 0 });
+  const govindaSlideMetricsRef = useRef({ slideSize: 0 });
 
   // Society members shown in the footer
   const members = [
@@ -38,6 +42,48 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
     const first = parts[0]?.[0] || "";
     const second = parts[1]?.[0] || "";
     return (first + second).toUpperCase();
+  };
+
+  // This year's timeline (edit dates/details as needed)
+  const timeline = [
+    {
+      date: "१ ऑक्टोबर २०२५",
+      title: "देवी आगमन",
+      description: "भव्य शोभायात्रेसह देवीचे आगमन आणि स्वागत",
+    },
+    {
+      date: "२ ऑक्टोबर २०२५",
+      title: "घटस्थापना",
+      description: "विधिवत पूजा आणि मंडप उद्घाटन",
+    },
+    {
+      date: "३-११ ऑक्टोबर २०२५",
+      title: "दैनिक आरती व कार्यक्रम",
+      description: "सकाळ-संध्याकाळ आरती, भजन, सांस्कृतिक कार्यक्रम",
+    },
+    {
+      date: "५ ऑक्टोबर २०२५",
+      title: "गरबा/दांडिया",
+      description: "समस्त भाविकांसाठी दांडिया नाईट",
+    },
+    {
+      date: "८ ऑक्टोबर २०२५",
+      title: "महालक्ष्मी पूजा",
+      description: "विशेष अलंकार, महाप्रसाद आणि सत्संग",
+    },
+    {
+      date: "१२ ऑक्टोबर २०२५",
+      title: "विसर्जन मिरवणूक",
+      description: "भक्तिपूर्ण मिरवणूक आणि निरोप",
+    },
+  ];
+
+  const getTimelineIcon = (title) => {
+    if (!title) return Calendar;
+    if (title.includes("आगमन") || title.includes("गरबा") || title.includes("दांडिया")) return Sparkles;
+    if (title.includes("पूजा") || title.includes("आरती") || title.includes("कार्यक्रम")) return Heart;
+    if (title.includes("विसर्जन")) return ArrowRight;
+    return Calendar;
   };
 
   useEffect(() => {
@@ -90,6 +136,52 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
     container.scrollTo({ left: index * slideSize, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const container = govindaRailRef.current;
+    if (!container) return;
+
+    const measure = () => {
+      const children = Array.from(container.children);
+      setTotalGovindaSlides(children.length);
+      if (children.length === 0) return;
+      const first = children[0];
+      let slideSize = first.offsetWidth;
+      if (children.length > 1) {
+        const second = children[1];
+        const gap = second.offsetLeft - first.offsetLeft - first.offsetWidth;
+        slideSize += isNaN(gap) ? 24 : gap;
+      } else {
+        slideSize += 24;
+      }
+      govindaSlideMetricsRef.current.slideSize = slideSize;
+    };
+
+    const onScroll = () => {
+      const { slideSize } = govindaSlideMetricsRef.current;
+      if (!slideSize) return;
+      const currentIndex = Math.round(container.scrollLeft / slideSize);
+      const clamped = Math.max(0, Math.min(currentIndex, container.children.length - 1));
+      setActiveGovindaIndex(clamped);
+    };
+
+    measure();
+    onScroll();
+    window.addEventListener("resize", measure);
+    container.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", measure);
+      container.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  const scrollGovindaToIndex = (index) => {
+    const container = govindaRailRef.current;
+    if (!container) return;
+    const { slideSize } = govindaSlideMetricsRef.current;
+    container.scrollTo({ left: index * slideSize, behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-600 via-orange-500 to-yellow-400 relative overflow-hidden">
       {/* Animated Background Pattern */}
@@ -131,11 +223,11 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 />
               </div>
               <div className="text-center">
-                <div className="amita-font  text-3xl  tracking-wide">
-                  <span className="block text-2xl font-black md:text-2xl text-yellow-50">भंडारवाडा नवरात्रौत्सव</span>
-                  <span className="block text-lg md:text-xl text-yellow-50">मंडळ</span>
+                <div className="amita-font font-bold leading-tight drop-shadow-lg">
+                  <span className="block text-3xl md:text-4xl lg:text-4xl text-white">भंडारवाडा नवरात्रौत्सव</span>
+                  <span className="block text-2xl md:text-3xl lg:text-4xl text-white">मंडळ</span>
                 </div>
-                <p className="text-yellow-200 text-sm devanagari-font">
+                <p className="text-red-700 font-bold text-sm lg:text-lg amita-font tracking-wide">
                   सुवर्ण महोत्सवी वर्ष
                 </p>
               </div>
@@ -166,9 +258,9 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 }`}
             >
               <div className="mb-8">
-                <div className="devanagari-font leading-tight mb-6">
-                  <span className="block text-4xl md:text-6xl font-extrabold text-yellow-50">भंडारवाडा नवरात्रौत्सव</span>
-                  <span className="block text-3xl md:text-5xl font-extrabold text-yellow-50">मंडळ</span>
+                <div className="amita-font font-extrabold leading-wide mb-6">
+                  <span className="block text-5xl md:text-6xl font-extrabold text-yellow-50 lg:ml-12">भंडारवाडा नवरात्रौत्सव</span>
+                  <span className="block text-5xl md:text-5xl font-extrabold text-yellow-50 tracking-wide text-center mt-4">मंडळ</span>
                 </div>
                 <div className="text-2xl md:text-4xl text-yellow-200 mb-6 font-bold devanagari-font">
                   सुवर्ण महोत्सवी वर्ष
@@ -250,29 +342,47 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* Timeline Section */}
       <section className="py-20 bg-white/10 backdrop-blur-sm relative z-10">
         <div className="container mx-auto px-4">
-          <Card className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-md border-4 border-yellow-400/50 shadow-2xl">
-            <CardContent className="p-10">
-              <h2 className="text-4xl font-bold text-center text-white mb-8 devanagari-font">
-                आमच्या परंपरेबद्दल
-              </h2>
-              <div className="text-xl text-white/95 text-center leading-relaxed space-y-6 devanagari-font max-w-4xl mx-auto">
-                <p className="bg-red-800/20 backdrop-blur-sm rounded-lg p-6 border border-yellow-400/30">
-                  १९७६ पासून आम्ही वरळी गावात नवरात्रीचा उत्सव अत्यंत
-                  भक्तिभावाने साजरा करत आहोत. या ५० वर्षांच्या पवित्र प्रवासात
-                  आम्ही हजारो भक्तांच्या मनात देवी मातेची अटूट भक्ती रुजवली आहे.
-                </p>
-                <p className="bg-orange-800/20 backdrop-blur-sm rounded-lg p-6 border border-yellow-400/30">
-                  आमचा हा सुवर्ण महोत्सवी वर्ष सर्व भक्तांसाठी अत्यंत विशेष आणि
-                  पवित्र आहे. श्री ब्राह्मणदेव प्रसन्न या दैवी आशीर्वादाने आम्ही
-                  पुढील अनेक वर्षे या पावन परंपरेला चालू ठेवू आणि समाजसेवेत
-                  योगदान देत राहू.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <h2 className="text-4xl font-bold text-center text-white mb-3 devanagari-font">या वर्षातील कार्यक्रम</h2>
+          <p className="text-center text-yellow-200/90 mb-12 devanagari-font">तारीख, पूजा व विशेष कार्यक्रम</p>
+          <div className="relative max-w-5xl mx-auto">
+            <div className="absolute left-6 md:left-1/2 translate-x-0 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400/80 to-orange-500/80"></div>
+            <ul className="space-y-12">
+              {timeline.map((item, idx) => {
+                const Icon = getTimelineIcon(item.title);
+                const isLeft = idx % 2 === 0;
+                return (
+                  <li key={idx} className="relative w-full">
+                    <span className="absolute top-7 left-6 md:left-1/2 translate-x-0 md:-translate-x-1/2 w-4 h-4 bg-yellow-400 rounded-full ring-4 ring-orange-500/30 shadow"></span>
+                    <span className="absolute top-7 left-6 md:left-1/2 translate-x-0 md:-translate-x-1/2 w-4 h-4 rounded-full bg-yellow-400/40 animate-ping"></span>
+                    <div className={`w-full flex ${isLeft ? "md:justify-start md:pr-6" : "md:justify-end md:pl-6"} justify-start pl-4 pr-2`}>
+                      <div
+                        className={`w-full md:w-1/2 ${isLeft ? "md:pr-6 md:text-right" : "md:pl-6 md:text-left"} pl-6 text-left`}
+                      >
+                        <div
+                          className={`inline-flex items-center ${isLeft ? "md:flex-row-reverse" : ""}`}
+                          style={{ gap: "12px" }}
+                        >
+                          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/80 to-red-500/80 border-2 border-yellow-400/60 shadow-xl flex items-center justify-center backdrop-blur-sm">
+                            <Icon className="w-7 h-7 text-white" />
+                          </div>
+                          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-yellow-400/40 shadow-xl transition-all duration-500 ease-out hover:scale-[1.02]" style={{ transitionDelay: `${idx * 80}ms` }}>
+                            <div className={`devanagari-font text-xs mb-2 ${isLeft ? "justify-end" : "justify-start"} flex`}>
+                              <span className="inline-flex items-center bg-yellow-400/15 text-yellow-200 border border-yellow-400/40 rounded-full px-3 py-1">{item.date}</span>
+                            </div>
+                            <h3 className="text-2xl font-bold text-white devanagari-font mb-2">{item.title}</h3>
+                            <p className="text-white/90 devanagari-font text-lg">{item.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -291,57 +401,69 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               ref={railRef}
             >
               {/* Memory Image 1 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
-                <img
-                  src="/assets/card-1.jpg"
-                  alt="स्थापना वर्ष"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                <div className="absolute inset-0 card-3d-inner">
+                  <img
+                    src="/assets/card-1.jpg"
+                    alt="स्थापना वर्ष"
+                    className="w-full h-full object-cover card-3d-media"
+                  />
+                </div>
               </div>
 
               {/* Memory Image 2 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
-                <img
-                  src="/assets/card-4.jpg"
-                  alt="दशक उत्सव"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                <div className="absolute inset-0 card-3d-inner">
+                  <img
+                    src="/assets/card-4.jpg"
+                    alt="दशक उत्सव"
+                    className="w-full h-full object-cover card-3d-media"
+                  />
+                </div>
               </div>
 
               {/* Memory Image 3 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
-                <img
-                  src="/assets/card-3.jpg"
-                  alt="रजत महोत्सव"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                <div className="absolute inset-0 card-3d-inner">
+                  <img
+                    src="/assets/card-3.jpg"
+                    alt="रजत महोत्सव"
+                    className="w-full h-full object-cover card-3d-media"
+                  />
+                </div>
               </div>
 
               {/* Memory Image 4 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
-                <img
-                  src="/assets/card-5.jpg"
-                  alt="नवीन मंडप"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                <div className="absolute inset-0 card-3d-inner">
+                  <img
+                    src="/assets/card-5.jpg"
+                    alt="नवीन मंडप"
+                    className="w-full h-full object-cover card-3d-media"
+                  />
+                </div>
               </div>
 
               {/* Memory Image 5 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
-                <img
-                  src="/assets/card-6.jpg"
-                  alt="डिजिटल युग"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                <div className="absolute inset-0 card-3d-inner">
+                  <img
+                    src="/assets/card-6.jpg"
+                    alt="डिजिटल युग"
+                    className="w-full h-full object-cover card-3d-media"
+                  />
+                </div>
               </div>
 
               {/* Memory Image 6 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
-                <img
-                  src="/assets/card-2.jpg"
-                  alt="सुवर्ण महोत्सव"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                <div className="absolute inset-0 card-3d-inner">
+                  <img
+                    src="/assets/card-2.jpg"
+                    alt="सुवर्ण महोत्सव"
+                    className="w-full h-full object-cover card-3d-media"
+                  />
+                </div>
               </div>
 
               {/* View More Button Card - Inside the Rail */}
@@ -355,7 +477,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <ArrowRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </div>
-                  
+
                   <div className="mt-4 flex items-center justify-center space-x-2">
                     <Heart className="w-5 h-5 text-pink-200" />
                     <span className="text-white/80 devanagari-font text-sm">
@@ -380,6 +502,117 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               ))}
             </div>
           </div>
+          {/* Govinda Images Rail */}
+          <div className="mt-20">
+            <h3 className="text-3xl font-bold text-center text-white mb-12 devanagari-font">
+              गोविंदा क्षण
+            </h3>
+            <div className="relative max-w-7xl mx-auto">
+              <div
+                className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
+                id="govindaRail"
+                ref={govindaRailRef}
+              >
+                {/* Govinda Image 1 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-2.jpg"
+                      alt="गोविंदा 1"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 2 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-3.jpg"
+                      alt="गोविंदा 2"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 3 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-4.jpg"
+                      alt="गोविंदा 3"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 4 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-5.jpg"
+                      alt="गोविंदा 4"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 5 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-6.jpg"
+                      alt="गोविंदा 5"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 6 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-1.jpg"
+                      alt="गोविंदा 6"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* View More Button Card - Inside the Rail */}
+                <div
+                  className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
+                  onClick={onNavigateToAlbum}
+                >
+                  <div className="text-center p-8">
+                    <div className="mb-6">
+                      <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-white/30 transition-all duration-300">
+                        <ArrowRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                      </div>
+                    </div>
+                    <div className="mt-4 flex items-center justify-center space-x-2">
+                      <Heart className="w-5 h-5 text-pink-200" />
+                      <span className="text-white/80 devanagari-font text-sm">अधिक फोटो</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Scroll Navigation Dots (dynamic) */}
+              <div className="flex justify-center mt-8 space-x-3">
+                {Array.from({ length: totalGovindaSlides }).map((_, idx) => (
+                  <button
+                    key={idx}
+                    aria-label={`Go to govinda slide ${idx + 1}`}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeGovindaIndex === idx
+                      ? "bg-yellow-300 scale-125 ring-2 ring-yellow-200"
+                      : "bg-yellow-500/50 hover:bg-yellow-400/80"
+                      }`}
+                    onClick={() => scrollGovindaToIndex(idx)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -389,9 +622,9 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
           <h2 className="text-4xl font-bold text-white mb-12 devanagari-font">
             आमच्यासोबत जुडा
           </h2>
-          <div className="max-w-lg mx-auto">
+          <div className="max-w-lg mx-auto ">
             <Card className="bg-white/20 backdrop-blur-md border-4 border-white/30 shadow-2xl">
-              <CardContent className="p-10">
+              <CardContent className="p-10 mt-5">
                 <Instagram className="w-20 h-20 text-white mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-white mb-6 devanagari-font">
                   Instagram वर फॉलो करा
@@ -429,7 +662,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   className="block max-w-[110px] h-auto"
                 />
               </div>
-              <h3 className="text-2xl font-bold devanagari-font">
+              <h3 className="text-2xl font-bold amita-font tracking-wide">
                 भंडारवाडा नवरात्रौत्सव मंडळ ❤️
               </h3>
             </div>
