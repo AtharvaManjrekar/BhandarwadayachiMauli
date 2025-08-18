@@ -224,7 +224,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               </div>
               <div className="text-center">
                 <div className="amita-font font-bold leading-tight drop-shadow-lg">
-                  <span className="block text-3xl md:text-4xl lg:text-4xl text-white">भंडारवाडा नवरात्रौत्सव</span>
+                  <span className="block text-2xl md:text-4xl lg:text-4xl text-white">भंडारवाडा नवरात्रौत्सव</span>
                   <span className="block text-2xl md:text-3xl lg:text-4xl text-white">मंडळ</span>
                 </div>
                 <p className="text-red-700 font-bold text-sm lg:text-lg amita-font tracking-wide">
