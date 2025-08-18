@@ -2,9 +2,26 @@
 
 import { Button } from "../ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
-import { ExternalLink, QrCode, Heart, Sparkles, ArrowLeft } from "lucide-react";
+import { ExternalLink, QrCode, Heart, Sparkles, ArrowLeft, Instagram, Youtube, Phone } from "lucide-react";
 
 export default function DonationPage({ onNavigateToHome }) {
+  // Society members (same as HomePage footer)
+  const members = [
+    { name: "प्रमुख: राजेश पाटील", role: "अध्यक्ष", phone: "+91 98xxxxxx01", image: null },
+    { name: "सचिव: अमित जोशी", role: "सचिव", phone: "+91 98xxxxxx02", image: null },
+    { name: "कोषाध्यक्ष: स्वाती देशमुख", role: "कोषाध्यक्ष", phone: "+91 98xxxxxx03", image: null },
+    { name: "सदस्य: विनोद कदम", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx04", image: null },
+    { name: "सदस्य: पूजा शिंदे", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx05", image: null },
+  ];
+
+  const getInitials = (fullName) => {
+    if (!fullName) return "";
+    const raw = fullName.replace(/^[^:]+:\s*/, "").trim();
+    const parts = raw.split(/\s+/);
+    const first = parts[0]?.[0] || "";
+    const second = parts[1]?.[0] || "";
+    return (first + second).toUpperCase();
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-600 via-red-500 to-pink-600 relative overflow-hidden">
       {/* Animated Background Pattern */}
@@ -34,24 +51,23 @@ export default function DonationPage({ onNavigateToHome }) {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-20 bg-red-800/90 backdrop-blur-sm border-b-4 border-yellow-400">
+      <nav className="relative z-20 bg-gradient-to-r from-orange-500 to-yellow-600 backdrop-blur-sm border-b-4 border-yellow-400">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-32 h-20 overflow-hidden shadow-lg bg-white rounded-lg">
+              <div className="w-36 h-28 rounded-lg overflow-hidden flex items-center justify-center">
                 <img
                   src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
-                  className="w-full h-full object-cover"
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
-              <div className="text-white">
-                <h1 className="text-xl md:text-2xl font-bold devanagari-font">
-                  भंडारवाडा नवरात्रौत्सव मंडळ
-                </h1>
-                <p className="text-yellow-200 text-sm devanagari-font">
-                  वर्गणी पृष्ठ
-                </p>
+              <div className="text-center">
+                <div className="amita-font font-extrabold leading-tight">
+                  <span className="block text-xl md:text-2xl text-yellow-50">भंडारवाडा नवरात्रौत्सव</span>
+                  <span className="block text-lg md:text-xl text-yellow-50">मंडळ</span>
+                </div>
+                <p className="text-yellow-200 text-sm devanagari-font">वर्गणी पृष्ठ</p>
               </div>
             </div>
             <div className="flex space-x-2">
@@ -97,11 +113,11 @@ export default function DonationPage({ onNavigateToHome }) {
                 <div className="bg-white rounded-2xl p-8 shadow-xl">
                   <div className="w-64 h-64 mx-auto bg-gray-200 rounded-xl flex items-center justify-center border-4 border-gray-300">
                     <div className="text-center">
-                      <QrCode className="w-20 h-20 text-gray-500 mx-auto mb-4" />
-                      <p className="text-gray-600 font-semibold">QR Code</p>
-                      <p className="text-sm text-gray-500">UPI Payment</p>
+                      <img src="/assets/sahil_kadam_scanner.jpg" alt="UPI" className="w-full h-full object-cover" />
                     </div>
                   </div>
+                  <p className="text-sm text-gray-500">MR. SAHIL KADAM</p>
+                  <p className="text-sm text-gray-500">+91 9823000000</p>
                 </div>
                 <div className="space-y-4">
                   <p className="text-lg text-white devanagari-font font-semibold bg-orange-800/30 backdrop-blur-sm rounded-lg p-4 border border-yellow-400/30">
@@ -200,20 +216,83 @@ export default function DonationPage({ onNavigateToHome }) {
       </section>
 
       {/* Footer */}
-      <footer className="bg-red-900 text-white py-12 relative z-10">
+      <footer className="bg-gradient-to-r from-purple-800 to-indigo-800 text-white py-12 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-6 mb-8">
-              <div className="w-24 h-16 overflow-hidden shadow-lg bg-white rounded-lg">
+              <div className="inline-block overflow-visible">
                 <img
                   src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
-                  className="w-full h-full object-cover"
+                  className="block max-w-[110px] h-auto"
                 />
               </div>
               <h3 className="text-2xl font-bold devanagari-font">
-                भंडारवाडा नवरात्रौत्सव मंडळ
+                भंडारवाडा नवरात्रौत्सव मंडळ ❤️
               </h3>
+            </div>
+            {/* Members grid */}
+            <div className="mb-8">
+              <h4 className="text-xl font-semibold mb-6 devanagari-font">समिती सदस्य</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                {members.map((m, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border-2 border-white/20 hover:bg-white/15 transition-colors duration-300"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-yellow-400 bg-gradient-to-br from-orange-400/60 to-red-500/60 flex items-center justify-center text-white text-base font-bold">
+                        {m.image ? (
+                          <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <span>{getInitials(m.name)}</span>
+                        )}
+                      </div>
+                      <div className="text-left">
+                        <div className="text-white font-semibold text-sm devanagari-font">{m.name}</div>
+                        <div className="text-white/80 text-xs devanagari-font">{m.role}</div>
+                        <a
+                          href={`tel:${m.phone.replace(/\s/g, "")}`}
+                          className="mt-2 inline-flex items-center text-yellow-300 hover:text-yellow-200 text-xs"
+                        >
+                          <Phone className="w-4 h-4 mr-1" /> {m.phone}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex justify-center space-x-8 mb-8">
+              <Button
+                variant="ghost"
+                size="lg"
+                className="text-white hover:text-yellow-400 devanagari-font"
+                onClick={() =>
+                  window.open(
+                    "https://www.instagram.com/bhandarwadyachi_mauli/",
+                    "_blank"
+                  )
+                }
+              >
+                <Instagram className="w-6 h-6 mr-3" />
+                Instagram
+              </Button>
+              <Button
+                variant="ghost"
+                size="lg"
+                className="text-white hover:text-yellow-400 devanagari-font"
+                onClick={() =>
+                  window.open(
+                    "https://www.youtube.com/watch?v=vgjGEpJwA2A",
+                    "_blank"
+                  )
+                }
+              >
+                <Youtube className="w-6 h-6 mr-3" />
+                YouTube
+              </Button>
             </div>
             <p className="text-lg text-yellow-200 devanagari-font mb-4">
               © 2025 भंडारवाडा नवरात्रौत्सव मंडळ | वर्गणी पृष्ठ

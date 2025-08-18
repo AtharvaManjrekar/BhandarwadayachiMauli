@@ -11,9 +11,28 @@ import {
   Download,
   Heart,
   Calendar,
+  Instagram,
+  Youtube,
+  Phone,
 } from "lucide-react";
 
 export default function PhotoAlbumPage({ onNavigateToHome }) {
+  const members = [
+    { name: "प्रमुख: राजेश पाटील", role: "अध्यक्ष", phone: "+91 98xxxxxx01", image: null },
+    { name: "सचिव: अमित जोशी", role: "सचिव", phone: "+91 98xxxxxx02", image: null },
+    { name: "कोषाध्यक्ष: स्वाती देशमुख", role: "कोषाध्यक्ष", phone: "+91 98xxxxxx03", image: null },
+    { name: "सदस्य: विनोद कदम", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx04", image: null },
+    { name: "सदस्य: पूजा शिंदे", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx05", image: null },
+  ];
+
+  const getInitials = (fullName) => {
+    if (!fullName) return "";
+    const raw = fullName.replace(/^[^:]+:\s*/, "").trim();
+    const parts = raw.split(/\s+/);
+    const first = parts[0]?.[0] || "";
+    const second = parts[1]?.[0] || "";
+    return (first + second).toUpperCase();
+  };
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -274,24 +293,23 @@ export default function PhotoAlbumPage({ onNavigateToHome }) {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-20 bg-red-800/90 backdrop-blur-sm border-b-4 border-yellow-400">
+      <nav className="relative z-20 bg-gradient-to-r from-orange-500 to-yellow-600 backdrop-blur-sm border-b-4 border-yellow-400">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 overflow-hidden shadow-lg bg-white rounded-lg">
+              <div className="w-36 h-28 rounded-lg overflow-hidden flex items-center justify-center">
                 <img
-                  src="/images/logo.jpeg"
+                  src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
-                  className="w-full h-full object-cover"
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
-              <div className="text-white">
-                <h1 className="text-xl md:text-2xl font-bold devanagari-font">
-                  फोटो अल्बम
-                </h1>
-                <p className="text-yellow-200 text-sm devanagari-font">
-                  ५० वर्षांची आठवणी
-                </p>
+              <div className="text-center">
+                <div className="amita-font font-extrabold leading-tight">
+                  <span className="block text-xl md:text-2xl text-yellow-50">भंडारवाडा नवरात्रौत्सव</span>
+                  <span className="block text-lg md:text-xl text-yellow-50">मंडळ</span>
+                </div>
+                <p className="text-yellow-200 text-sm devanagari-font">फोटो अल्बम</p>
               </div>
             </div>
             <div className="flex space-x-2">
@@ -434,20 +452,82 @@ export default function PhotoAlbumPage({ onNavigateToHome }) {
       )}
 
       {/* Footer */}
-      <footer className="bg-red-900 text-white py-12 relative z-10 mt-16">
+      <footer className="bg-gradient-to-r from-purple-800 to-indigo-800 text-white py-12 relative z-10 mt-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-6 mb-8">
-              <div className="w-16 h-16 overflow-hidden shadow-lg bg-white rounded-lg">
+              <div className="inline-block overflow-visible">
                 <img
-                  src="/images/logo.jpeg"
+                  src="/assets/devi-mata-logo.jpeg"
                   alt="भंडारवाडयाची माऊली"
-                  className="w-full h-full object-cover"
+                  className="block max-w-[110px] h-auto"
                 />
               </div>
               <h3 className="text-2xl font-bold devanagari-font">
-                भंडारवाडा नवरात्रौत्सव मंडळ
+                भंडारवाडा नवरात्रौत्सव मंडळ ❤️
               </h3>
+            </div>
+            {/* Members grid */}
+            <div className="mb-8">
+              <h4 className="text-xl font-semibold mb-6 devanagari-font">समिती सदस्य</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                {members.map((m, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border-2 border-white/20 hover:bg-white/15 transition-colors duration-300"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-yellow-400 bg-gradient-to-br from-orange-400/60 to-red-500/60 flex items-center justify-center text-white text-base font-bold">
+                        {m.image ? (
+                          <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <span>{getInitials(m.name)}</span>
+                        )}
+                      </div>
+                      <div className="text-left">
+                        <div className="text-white font-semibold text-sm devanagari-font">{m.name}</div>
+                        <div className="text-white/80 text-xs devanagari-font">{m.role}</div>
+                        <a
+                          href={`tel:${m.phone.replace(/\s/g, "")}`}
+                          className="mt-2 inline-flex items-center text-yellow-300 hover:text-yellow-200 text-xs"
+                        >
+                          <Phone className="w-4 h-4 mr-1" /> {m.phone}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex justify-center space-x-8 mb-8">
+              <Button
+                variant="ghost"
+                size="lg"
+                className="text-white hover:text-yellow-400 devanagari-font"
+                onClick={() =>
+                  window.open(
+                    "https://www.instagram.com/bhandarwadyachi_mauli/",
+                    "_blank"
+                  )
+                }
+              >
+                <Instagram className="w-6 h-6 mr-3" />
+                Instagram
+              </Button>
+              <Button
+                variant="ghost"
+                size="lg"
+                className="text-white hover:text-yellow-400 devanagari-font"
+                onClick={() =>
+                  window.open(
+                    "https://www.youtube.com/watch?v=vgjGEpJwA2A",
+                    "_blank"
+                  )
+                }
+              >
+                <Youtube className="w-6 h-6 mr-3" />
+                YouTube
+              </Button>
             </div>
             <p className="text-lg text-yellow-200 devanagari-font mb-4">
               © 2025 भंडारवाडा नवरात्रौत्सव मंडळ | फोटो अल्बम

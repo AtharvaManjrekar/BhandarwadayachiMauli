@@ -1,4 +1,3 @@
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -48,20 +47,26 @@
 
 @layer base {
   * {
-    @apply border-border;
+    /* Tailwind v4 doesn't know `border-border`; use raw CSS variable */
+    border-color: hsl(var(--border));
   }
+
   body {
-    @apply bg-background text-foreground;
+    /* Replace unsupported tokens with raw CSS variables */
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     font-family: "Noto Sans Devanagari", "Mukti", "Gargi", "Lohit Devanagari", system-ui, sans-serif;
   }
 }
 
 /* Custom animations */
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }
@@ -72,11 +77,13 @@
 }
 
 @keyframes diya-flicker {
+
   0%,
   100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.05);
@@ -107,6 +114,11 @@ html {
   line-height: 1.4;
 }
 
+/* Amita display font for headings */
+.amita-font {
+  font-family: "Amita", cursive;
+}
+
 /* Enhanced mobile responsiveness */
 @media (max-width: 640px) {
   .devanagari-font {
@@ -116,8 +128,10 @@ html {
 
 /* Hide scrollbar for horizontal rail - Enhanced and Complete */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -146,7 +160,8 @@ html {
 .scrollbar-hide {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  scrollbar-color: transparent transparent; /* Firefox fallback */
+  scrollbar-color: transparent transparent;
+  /* Firefox fallback */
 }
 
 /* Force hide on the specific rail container */
@@ -177,6 +192,7 @@ html {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -190,18 +206,23 @@ html {
 .memory-rail-item:nth-child(1) {
   animation-delay: 0.1s;
 }
+
 .memory-rail-item:nth-child(2) {
   animation-delay: 0.2s;
 }
+
 .memory-rail-item:nth-child(3) {
   animation-delay: 0.3s;
 }
+
 .memory-rail-item:nth-child(4) {
   animation-delay: 0.4s;
 }
+
 .memory-rail-item:nth-child(5) {
   animation-delay: 0.5s;
 }
+
 .memory-rail-item:nth-child(6) {
   animation-delay: 0.6s;
 }

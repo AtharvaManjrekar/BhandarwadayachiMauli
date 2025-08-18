@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "../ui/Button";
 import { Card, CardContent } from "../ui/Card";
 import {
@@ -12,14 +12,83 @@ import {
   Heart,
   DollarSign,
   ArrowRight,
+  Phone,
 } from "lucide-react";
 
 export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
   const [isVisible, setIsVisible] = useState(false);
+  const railRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [totalSlides, setTotalSlides] = useState(0);
+  const slideMetricsRef = useRef({ slideSize: 0 });
+
+  // Society members shown in the footer
+  const members = [
+    { name: "प्रमुख: राजेश पाटील", role: "अध्यक्ष", phone: "+91 98xxxxxx01", image: null },
+    { name: "सचिव: अमित जोशी", role: "सचिव", phone: "+91 98xxxxxx02", image: null },
+    { name: "कोषाध्यक्ष: स्वाती देशमुख", role: "कोषाध्यक्ष", phone: "+91 98xxxxxx03", image: null },
+    { name: "सदस्य: विनोद कदम", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx04", image: null },
+    { name: "सदस्य: पूजा शिंदे", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx05", image: null },
+  ];
+
+  const getInitials = (fullName) => {
+    if (!fullName) return "";
+    const raw = fullName.replace(/^[^:]+:\s*/, "").trim();
+    const parts = raw.split(/\s+/);
+    const first = parts[0]?.[0] || "";
+    const second = parts[1]?.[0] || "";
+    return (first + second).toUpperCase();
+  };
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  useEffect(() => {
+    const container = railRef.current;
+    if (!container) return;
+
+    const measure = () => {
+      const children = Array.from(container.children);
+      setTotalSlides(children.length);
+      if (children.length === 0) return;
+      const first = children[0];
+      let slideSize = first.offsetWidth;
+      if (children.length > 1) {
+        const second = children[1];
+        const gap = second.offsetLeft - first.offsetLeft - first.offsetWidth;
+        slideSize += isNaN(gap) ? 24 : gap;
+      } else {
+        slideSize += 24;
+      }
+      slideMetricsRef.current.slideSize = slideSize;
+    };
+
+    const onScroll = () => {
+      const { slideSize } = slideMetricsRef.current;
+      if (!slideSize) return;
+      const currentIndex = Math.round(container.scrollLeft / slideSize);
+      const clamped = Math.max(0, Math.min(currentIndex, container.children.length - 1));
+      setActiveIndex(clamped);
+    };
+
+    measure();
+    onScroll();
+    window.addEventListener("resize", measure);
+    container.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", measure);
+      container.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  const scrollToIndex = (index) => {
+    const container = railRef.current;
+    if (!container) return;
+    const { slideSize } = slideMetricsRef.current;
+    container.scrollTo({ left: index * slideSize, behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-600 via-orange-500 to-yellow-400 relative overflow-hidden">
@@ -61,10 +130,11 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
-              <div className="text-white">
-                <h1 className="text-xl md:text-2xl font-bold devanagari-font">
-                  भंडारवाडा नवरात्रौत्सव मंडळ
-                </h1>
+              <div className="text-center">
+                <div className="amita-font  text-3xl  tracking-wide">
+                  <span className="block text-2xl font-black md:text-2xl text-yellow-50">भंडारवाडा नवरात्रौत्सव</span>
+                  <span className="block text-lg md:text-xl text-yellow-50">मंडळ</span>
+                </div>
                 <p className="text-yellow-200 text-sm devanagari-font">
                   सुवर्ण महोत्सवी वर्ष
                 </p>
@@ -90,16 +160,16 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div
-              className={`text-center lg:text-left lg:ml-10 transition-all duration-1000 ${
-                isVisible
-                  ? "translate-x-0 opacity-100"
-                  : "-translate-x-full opacity-0"
-              }`}
+              className={`text-center lg:text-left lg:ml-10 transition-all duration-1000 ${isVisible
+                ? "translate-x-0 opacity-100"
+                : "-translate-x-full opacity-0"
+                }`}
             >
               <div className="mb-8">
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg devanagari-font leading-tight">
-                  भंडारवाडा नवरात्रौत्सव मंडळ
-                </h1>
+                <div className="devanagari-font leading-tight mb-6">
+                  <span className="block text-4xl md:text-6xl font-extrabold text-yellow-50">भंडारवाडा नवरात्रौत्सव</span>
+                  <span className="block text-3xl md:text-5xl font-extrabold text-yellow-50">मंडळ</span>
+                </div>
                 <div className="text-2xl md:text-4xl text-yellow-200 mb-6 font-bold devanagari-font">
                   सुवर्ण महोत्सवी वर्ष
                 </div>
@@ -160,11 +230,10 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               </div>
             </div>
             <div
-              className={`relative transition-all duration-1000 delay-300 ${
-                isVisible
-                  ? "translate-x-0 opacity-100"
-                  : "translate-x-full opacity-0"
-              }`}
+              className={`relative transition-all duration-1000 delay-300 ${isVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-full opacity-0"
+                }`}
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full blur-3xl opacity-40 animate-pulse"></div>
@@ -217,11 +286,12 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
           {/* Horizontal Image Rail */}
           <div className="relative max-w-7xl mx-auto">
             <div
-              className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4"
+              className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
               id="memoryRail"
+              ref={railRef}
             >
               {/* Memory Image 1 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
                 <img
                   src="/assets/card-1.jpg"
                   alt="स्थापना वर्ष"
@@ -230,7 +300,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               </div>
 
               {/* Memory Image 2 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
                 <img
                   src="/assets/card-4.jpg"
                   alt="दशक उत्सव"
@@ -239,7 +309,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               </div>
 
               {/* Memory Image 3 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
                 <img
                   src="/assets/card-3.jpg"
                   alt="रजत महोत्सव"
@@ -248,7 +318,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               </div>
 
               {/* Memory Image 4 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
                 <img
                   src="/assets/card-5.jpg"
                   alt="नवीन मंडप"
@@ -257,7 +327,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               </div>
 
               {/* Memory Image 5 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
                 <img
                   src="/assets/card-6.jpg"
                   alt="डिजिटल युग"
@@ -266,7 +336,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               </div>
 
               {/* Memory Image 6 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80">
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 w-80 h-80 memory-rail-item snap-center">
                 <img
                   src="/assets/card-2.jpg"
                   alt="सुवर्ण महोत्सव"
@@ -276,7 +346,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
 
               {/* View More Button Card - Inside the Rail */}
               <div
-                className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group"
+                className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
                 onClick={onNavigateToAlbum}
               >
                 <div className="text-center p-8">
@@ -285,12 +355,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <ArrowRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 devanagari-font">
-                    सर्व आठवणी पहा
-                  </h3>
-                  <p className="text-white/90 devanagari-font text-lg">
-                    ५० वर्षांची संपूर्ण गॅलरी
-                  </p>
+                  
                   <div className="mt-4 flex items-center justify-center space-x-2">
                     <Heart className="w-5 h-5 text-pink-200" />
                     <span className="text-white/80 devanagari-font text-sm">
@@ -300,32 +365,19 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 </div>
               </div>
             </div>
-            {/* Scroll Navigation Dots */}
+            {/* Scroll Navigation Dots (dynamic) */}
             <div className="flex justify-center mt-8 space-x-3">
-              <button
-                className="w-3 h-3 bg-yellow-400 rounded-full opacity-60 hover:opacity-100 transition-opacity duration-300"
-                onClick={() =>
-                  (document.getElementById("memoryRail").scrollLeft = 0)
-                }
-              ></button>
-              <button
-                className="w-3 h-3 bg-yellow-400 rounded-full opacity-40 hover:opacity-100 transition-opacity duration-300"
-                onClick={() =>
-                  (document.getElementById("memoryRail").scrollLeft = 400)
-                }
-              ></button>
-              <button
-                className="w-3 h-3 bg-yellow-400 rounded-full opacity-40 hover:opacity-100 transition-opacity duration-300"
-                onClick={() =>
-                  (document.getElementById("memoryRail").scrollLeft = 800)
-                }
-              ></button>
-              <button
-                className="w-3 h-3 bg-yellow-400 rounded-full opacity-40 hover:opacity-100 transition-opacity duration-300"
-                onClick={() =>
-                  (document.getElementById("memoryRail").scrollLeft = 1200)
-                }
-              ></button>
+              {Array.from({ length: totalSlides }).map((_, idx) => (
+                <button
+                  key={idx}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeIndex === idx
+                    ? "bg-yellow-300 scale-125 ring-2 ring-yellow-200"
+                    : "bg-yellow-500/50 hover:bg-yellow-400/80"
+                    }`}
+                  onClick={() => scrollToIndex(idx)}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -380,6 +432,38 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               <h3 className="text-2xl font-bold devanagari-font">
                 भंडारवाडा नवरात्रौत्सव मंडळ ❤️
               </h3>
+            </div>
+            {/* Members grid */}
+            <div className="mb-8">
+              <h4 className="text-xl font-semibold mb-6 devanagari-font">समिती सदस्य</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                {members.map((m, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border-2 border-white/20 hover:bg-white/15 transition-colors duration-300"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-yellow-400 bg-gradient-to-br from-orange-400/60 to-red-500/60 flex items-center justify-center text-white text-base font-bold">
+                        {m.image ? (
+                          <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <span>{getInitials(m.name)}</span>
+                        )}
+                      </div>
+                      <div className="text-left">
+                        <div className="text-white font-semibold text-sm devanagari-font">{m.name}</div>
+                        <div className="text-white/80 text-xs devanagari-font">{m.role}</div>
+                        <a
+                          href={`tel:${m.phone.replace(/\s/g, "")}`}
+                          className="mt-2 inline-flex items-center text-yellow-300 hover:text-yellow-200 text-xs"
+                        >
+                          <Phone className="w-4 h-4 mr-1" /> {m.phone}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="flex justify-center space-x-8 mb-8">
               <Button
