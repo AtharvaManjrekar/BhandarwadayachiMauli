@@ -13,12 +13,15 @@ import {
   DollarSign,
   ArrowRight,
   Phone,
+  Menu,
+  X,
 } from "lucide-react";
 
 export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
   const [isVisible, setIsVisible] = useState(false);
   const railRef = useRef(null);
   const govindaRailRef = useRef(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeGovindaIndex, setActiveGovindaIndex] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
@@ -222,7 +225,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
-              <div className="text-center">
+              <div className="text-left">
                 <div className="amita-font font-bold leading-tight drop-shadow-lg">
                   <span className="block text-2xl md:text-4xl lg:text-4xl text-white">भंडारवाडा नवरात्रौत्सव</span>
                   <span className="block text-2xl md:text-3xl lg:text-4xl text-white">मंडळ</span>
@@ -232,23 +235,43 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 </p>
               </div>
             </div>
-            <div className="flex space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font"
-                onClick={onNavigateToDonation}
-              >
-                <DollarSign className="w-4 h-4 mr-1" />
-                वर्गणी
-              </Button>
-            </div>
+            {/* Desktop nav */}
+            <ul className="hidden md:flex items-center space-x-6 text-white font-semibold">
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' })}>मुख्य</button></li>
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' })}>कार्यक्रम</button></li>
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' })}>आठवणी</button></li>
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('govinda')?.scrollIntoView({ behavior: 'smooth' })}>गोविंदा</button></li>
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={onNavigateToAlbum}>फोटो अल्बम</button></li>
+              <li>
+                <Button size="sm" className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font" onClick={onNavigateToDonation}>
+                  <DollarSign className="w-4 h-4 mr-1" /> वर्गणी
+                </Button>
+              </li>
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>संपर्क</button></li>
+            </ul>
+            {/* Mobile hamburger */}
+            <button className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-white hover:text-yellow-200 hover:bg-white/10 transition" aria-label="Open Menu" onClick={() => setIsMenuOpen(v => !v)}>
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+          {isMenuOpen && (
+            <div className="md:hidden mt-4 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm">
+              <ul className="py-2 divide-y divide-white/10">
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>मुख्य</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>कार्यक्रम</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>आठवणी</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('govinda')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>गोविंदा</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { onNavigateToAlbum?.(); setIsMenuOpen(false); }}>फोटो अल्बम</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { onNavigateToDonation?.(); setIsMenuOpen(false); }}>वर्गणी</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>संपर्क</button></li>
+              </ul>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-20 z-10">
+      <section id="top" className="relative py-20 z-10">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div
@@ -343,7 +366,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-20 bg-white/10 backdrop-blur-sm relative z-10">
+      <section id="timeline" className="py-20 bg-white/10 backdrop-blur-sm relative z-10">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-white mb-3 devanagari-font">या वर्षातील कार्यक्रम</h2>
           <p className="text-center text-yellow-200/90 mb-12 devanagari-font">तारीख, पूजा व विशेष कार्यक्रम</p>
@@ -387,7 +410,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
       </section>
 
       {/* Old Memories Section */}
-      <section className="py-20 relative z-10">
+      <section id="memories" className="py-20 relative z-10">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-white mb-12 devanagari-font">
             जुन्या आठवणी
@@ -503,7 +526,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
             </div>
           </div>
           {/* Govinda Images Rail */}
-          <div className="mt-20">
+          <div id="govinda" className="mt-20">
             <h3 className="text-3xl font-bold text-center text-white mb-12 devanagari-font">
               गोविंदा क्षण
             </h3>
@@ -651,7 +674,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-purple-800 to-indigo-800 text-white py-12 relative z-10">
+      <footer id="contact" className="bg-gradient-to-r from-purple-800 to-indigo-800 text-white py-12 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-6 mb-8">
