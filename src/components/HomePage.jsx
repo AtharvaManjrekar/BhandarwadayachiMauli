@@ -22,6 +22,8 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
   const railRef = useRef(null);
   const govindaRailRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAlbumMenuOpen, setIsAlbumMenuOpen] = useState(false);
+  const albumMenuTimeoutRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeGovindaIndex, setActiveGovindaIndex] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
@@ -92,6 +94,23 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const openAlbumMenu = () => {
+    if (albumMenuTimeoutRef.current) {
+      clearTimeout(albumMenuTimeoutRef.current);
+      albumMenuTimeoutRef.current = null;
+    }
+    setIsAlbumMenuOpen(true);
+  };
+
+  const closeAlbumMenuWithDelay = () => {
+    if (albumMenuTimeoutRef.current) {
+      clearTimeout(albumMenuTimeoutRef.current);
+    }
+    albumMenuTimeoutRef.current = setTimeout(() => {
+      setIsAlbumMenuOpen(false);
+    }, 150);
+  };
 
   useEffect(() => {
     const container = railRef.current;
@@ -240,8 +259,34 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' })}>मुख्य</button></li>
               <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' })}>कार्यक्रम</button></li>
               <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' })}>आठवणी</button></li>
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('govinda')?.scrollIntoView({ behavior: 'smooth' })}>गोविंदा</button></li>
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={onNavigateToAlbum}>फोटो अल्बम</button></li>
+              <li
+                className="relative"
+                onMouseEnter={openAlbumMenu}
+                onMouseLeave={closeAlbumMenuWithDelay}
+              >
+                <button
+                  className="hover:text-yellow-200 transition-colors"
+                  aria-haspopup="true"
+                  aria-expanded={isAlbumMenuOpen}
+                >
+                  फोटो अल्बम
+                </button>
+                {isAlbumMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-64 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm z-30">
+                    <ul className="py-2 divide-y divide-white/10">
+                      <li>
+                        <button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' })}>नवरात्रौत्सव फोटो अल्बम</button>
+                      </li>
+                      <li>
+                        <button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => document.getElementById('govinda')?.scrollIntoView({ behavior: 'smooth' })}>इतर उत्सव फोटो अल्बम</button>
+                      </li>
+                      <li>
+                        <button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => document.getElementById('govinda')?.scrollIntoView({ behavior: 'smooth' })}>इतर उत्सव फोटो अल्बम</button>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </li>
               <li>
                 <Button size="sm" className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font" onClick={onNavigateToDonation}>
                   <DollarSign className="w-4 h-4 mr-1" /> वर्गणी
@@ -261,7 +306,8 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>कार्यक्रम</button></li>
                 <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>आठवणी</button></li>
                 <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('govinda')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>गोविंदा</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { onNavigateToAlbum?.(); setIsMenuOpen(false); }}>फोटो अल्बम</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>नवरात्रौत्सव फोटो अल्बम</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('other')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>इतर उत्सव फोटो अल्बम</button></li>
                 <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { onNavigateToDonation?.(); setIsMenuOpen(false); }}>वर्गणी</button></li>
                 <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>संपर्क</button></li>
               </ul>
@@ -413,7 +459,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
       <section id="memories" className="py-20 relative z-10">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-white mb-12 devanagari-font">
-            जुन्या आठवणी
+            नवरात्री उत्सवाचा इतिहास
           </h2>
 
           {/* Horizontal Image Rail */}
@@ -468,31 +514,11 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               </div>
 
               {/* Memory Image 5 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
-                <div className="absolute inset-0 card-3d-inner">
-                  <img
-                    src="/assets/card-6.jpg"
-                    alt="डिजिटल युग"
-                    className="w-full h-full object-cover card-3d-media"
-                  />
-                </div>
-              </div>
-
-              {/* Memory Image 6 */}
-              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
-                <div className="absolute inset-0 card-3d-inner">
-                  <img
-                    src="/assets/card-2.jpg"
-                    alt="सुवर्ण महोत्सव"
-                    className="w-full h-full object-cover card-3d-media"
-                  />
-                </div>
-              </div>
 
               {/* View More Button Card - Inside the Rail */}
               <div
                 className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
-                onClick={onNavigateToAlbum}
+                onClick={() => onNavigateToAlbum?.('navratri')}
               >
                 <div className="text-center p-8">
                   <div className="mb-6">
@@ -528,7 +554,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
           {/* Govinda Images Rail */}
           <div id="govinda" className="mt-20">
             <h3 className="text-3xl font-bold text-center text-white mb-12 devanagari-font">
-              गोविंदा क्षण
+            इतर सण
             </h3>
             <div className="relative max-w-7xl mx-auto">
               <div
@@ -605,7 +631,119 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* View More Button Card - Inside the Rail */}
                 <div
                   className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
-                  onClick={onNavigateToAlbum}
+                  onClick={() => onNavigateToAlbum?.('navratri')}
+                >
+                  <div className="text-center p-8">
+                    <div className="mb-6">
+                      <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-white/30 transition-all duration-300">
+                        <ArrowRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                      </div>
+                    </div>
+                    <div className="mt-4 flex items-center justify-center space-x-2">
+                      <Heart className="w-5 h-5 text-pink-200" />
+                      <span className="text-white/80 devanagari-font text-sm">अधिक फोटो</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Scroll Navigation Dots (dynamic) */}
+              <div className="flex justify-center mt-8 space-x-3">
+                {Array.from({ length: totalGovindaSlides }).map((_, idx) => (
+                  <button
+                    key={idx}
+                    aria-label={`Go to govinda slide ${idx + 1}`}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeGovindaIndex === idx
+                      ? "bg-yellow-300 scale-125 ring-2 ring-yellow-200"
+                      : "bg-yellow-500/50 hover:bg-yellow-400/80"
+                      }`}
+                    onClick={() => scrollGovindaToIndex(idx)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Other Images Rail */}
+          <div id="govinda" className="mt-20">
+            <h3 className="text-3xl font-bold text-center text-white mb-12 devanagari-font">
+            इतर सण
+            </h3>
+            <div className="relative max-w-7xl mx-auto">
+              <div
+                className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
+                id="govindaRail"
+                ref={govindaRailRef}
+              >
+                {/* Govinda Image 1 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-2.jpg"
+                      alt="गोविंदा 1"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 2 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-3.jpg"
+                      alt="गोविंदा 2"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 3 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-4.jpg"
+                      alt="गोविंदा 3"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 4 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-5.jpg"
+                      alt="गोविंदा 4"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 5 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-6.jpg"
+                      alt="गोविंदा 5"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* Govinda Image 6 */}
+                <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                  <div className="absolute inset-0 card-3d-inner">
+                    <img
+                      src="/assets/card-1.jpg"
+                      alt="गोविंदा 6"
+                      className="w-full h-full object-cover card-3d-media"
+                    />
+                  </div>
+                </div>
+
+                {/* View More Button Card - Inside the Rail */}
+                <div
+                  className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
+                  onClick={() => onNavigateToAlbum?.('navratri')}
                 >
                   <div className="text-center p-8">
                     <div className="mb-6">

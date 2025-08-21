@@ -1,10 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "../ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
-import { ExternalLink, QrCode, Heart, Sparkles, ArrowLeft, Instagram, Youtube, Phone } from "lucide-react";
+import { ExternalLink, QrCode, Heart, Sparkles, ArrowLeft, Instagram, Youtube, Phone, Menu, X } from "lucide-react";
 
-export default function DonationPage({ onNavigateToHome }) {
+export default function DonationPage({ onNavigateToHome, onNavigateToDonation, onNavigateToAlbum }) {
   // Society members (same as HomePage footer)
   const members = [
     { name: "प्रमुख: राजेश पाटील", role: "अध्यक्ष", phone: "+91 98xxxxxx01", image: null },
@@ -21,6 +22,13 @@ export default function DonationPage({ onNavigateToHome }) {
     const first = parts[0]?.[0] || "";
     const second = parts[1]?.[0] || "";
     return (first + second).toUpperCase();
+  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const goHomeAndScroll = (id) => {
+    onNavigateToHome?.();
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-600 via-red-500 to-pink-600 relative overflow-hidden">
@@ -70,18 +78,62 @@ export default function DonationPage({ onNavigateToHome }) {
                 <p className="text-yellow-200 text-sm devanagari-font">वर्गणी पृष्ठ</p>
               </div>
             </div>
-            <div className="flex space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font"
-                onClick={onNavigateToHome}
-              >
-                <ArrowLeft className="w-4 h-4 mr-1" />
-                मुख्य पृष्ठ
-              </Button>
-            </div>
+            {/* Desktop nav */}
+            <ul className="hidden md:flex items-center space-x-6 text-white font-semibold">
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll('top')}>मुख्य</button></li>
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll('timeline')}>कार्यक्रम</button></li>
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll('memories')}>आठवणी</button></li>
+              {/* <li><button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll('govinda')}>गोविंदा</button></li> */}
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={onNavigateToAlbum}>फोटो अल्बम</button></li>
+              <li>
+                <Button size="sm" className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font" onClick={onNavigateToDonation}>
+                  वर्गणी
+                </Button>
+              </li>
+              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>संपर्क</button></li>
+            </ul>
+            {/* Mobile hamburger */}
+            <button
+              className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-white hover:text-yellow-200 hover:bg-white/10 transition"
+              aria-label="Open Menu"
+              onClick={() => setIsMenuOpen((v) => !v)}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+          {isMenuOpen && (
+            <div className="md:hidden mt-4 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm">
+              <ul className="py-2 divide-y divide-white/10">
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { goHomeAndScroll('top'); setIsMenuOpen(false); }}>मुख्य</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { goHomeAndScroll('timeline'); setIsMenuOpen(false); }}>कार्यक्रम</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { goHomeAndScroll('memories'); setIsMenuOpen(false); }}>आठवणी</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { goHomeAndScroll('govinda'); setIsMenuOpen(false); }}>गोविंदा</button></li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => {
+                      onNavigateToAlbum?.();
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    फोटो अल्बम
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => {
+                      onNavigateToDonation?.();
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    वर्गणी
+                  </button>
+                </li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>संपर्क</button></li>
+              </ul>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -216,7 +268,7 @@ export default function DonationPage({ onNavigateToHome }) {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-purple-800 to-indigo-800 text-white py-12 relative z-10">
+      <footer id="contact" className="bg-gradient-to-r from-purple-800 to-indigo-800 text-white py-12 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-6 mb-8">
