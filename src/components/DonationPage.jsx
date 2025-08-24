@@ -1,11 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "../ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
-import { ExternalLink, QrCode, Heart, Sparkles, ArrowLeft, Instagram, Youtube, Phone, Menu, X } from "lucide-react";
+import {
+  ExternalLink,
+  QrCode,
+  Heart,
+  Sparkles,
+  Menu,
+  X,
+  DollarSign,
+  Instagram,
+  Youtube,
+  Phone,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-export default function DonationPage({ onNavigateToHome, onNavigateToDonation, onNavigateToAlbum }) {
+export default function DonationPage() {
+  const navigate = useNavigate();
+
   // Society members (same as HomePage footer)
   const members = [
     { name: "प्रमुख: राजेश पाटील", role: "अध्यक्ष", phone: "+91 98xxxxxx01", image: null },
@@ -15,6 +29,27 @@ export default function DonationPage({ onNavigateToHome, onNavigateToDonation, o
     { name: "सदस्य: पूजा शिंदे", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx05", image: null },
   ];
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAlbumMenuOpen, setIsAlbumMenuOpen] = useState(false);
+  const albumMenuTimeoutRef = useRef(null);
+
+  const openAlbumMenu = () => {
+    if (albumMenuTimeoutRef.current) {
+      clearTimeout(albumMenuTimeoutRef.current);
+      albumMenuTimeoutRef.current = null;
+    }
+    setIsAlbumMenuOpen(true);
+  };
+
+  const closeAlbumMenuWithDelay = () => {
+    if (albumMenuTimeoutRef.current) {
+      clearTimeout(albumMenuTimeoutRef.current);
+    }
+    albumMenuTimeoutRef.current = setTimeout(() => {
+      setIsAlbumMenuOpen(false);
+    }, 150);
+  };
+
   const getInitials = (fullName) => {
     if (!fullName) return "";
     const raw = fullName.replace(/^[^:]+:\s*/, "").trim();
@@ -23,13 +58,15 @@ export default function DonationPage({ onNavigateToHome, onNavigateToDonation, o
     const second = parts[1]?.[0] || "";
     return (first + second).toUpperCase();
   };
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Navigate to home and scroll to section
   const goHomeAndScroll = (id) => {
-    onNavigateToHome?.();
+    navigate("/"); // first go home
     setTimeout(() => {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+    }, 200); // small delay so page loads
   };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-600 via-red-500 to-pink-600 relative overflow-hidden">
       {/* Animated Background Pattern */}
@@ -70,66 +107,96 @@ export default function DonationPage({ onNavigateToHome, onNavigateToDonation, o
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
-              <div className="text-center">
-                <div className="amita-font font-extrabold leading-tight">
-                  <span className="block text-xl md:text-2xl text-yellow-50">भंडारवाडा नवरात्रौत्सव</span>
-                  <span className="block text-lg md:text-xl text-yellow-50">मंडळ</span>
+              <div className="text-left">
+                <div className="amita-font font-bold leading-tight drop-shadow-lg">
+                  <span className="block text-2xl md:text-4xl lg:text-4xl text-white">भंडारवाडा नवरात्रौत्सव</span>
+                  <span className="block text-2xl md:text-3xl lg:text-4xl text-white">मंडळ</span>
                 </div>
-                <p className="text-yellow-200 text-sm devanagari-font">वर्गणी पृष्ठ</p>
+                <p className="text-red-700 font-bold text-sm lg:text-lg amita-font tracking-wide">
+                  सुवर्ण महोत्सवी वर्ष
+                </p>
               </div>
             </div>
             {/* Desktop nav */}
             <ul className="hidden md:flex items-center space-x-6 text-white font-semibold">
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll('top')}>मुख्य</button></li>
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll('timeline')}>कार्यक्रम</button></li>
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll('memories')}>आठवणी</button></li>
-              {/* <li><button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll('govinda')}>गोविंदा</button></li> */}
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={onNavigateToAlbum}>फोटो अल्बम</button></li>
               <li>
-                <Button size="sm" className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font" onClick={onNavigateToDonation}>
-                  वर्गणी
+                <button className="hover:text-yellow-200 transition-colors" onClick={() => navigate("/")}>
+                  मुख्य
+                </button>
+              </li>
+              <li>
+                <button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll("timeline")}>
+                  कार्यक्रम
+                </button>
+              </li>
+              <li>
+                <button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll("navratri_memories")}>
+                  आठवणी
+                </button>
+              </li>
+              <li
+                className="relative"
+                onMouseEnter={openAlbumMenu}
+                onMouseLeave={closeAlbumMenuWithDelay}
+              >
+                <button
+                  className="hover:text-yellow-200 transition-colors"
+                  aria-haspopup="true"
+                  aria-expanded={isAlbumMenuOpen}
+                >
+                  फोटो अल्बम
+                </button>
+                {isAlbumMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-64 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm z-30">
+                    <ul className="py-2 divide-y divide-white/10">
+                      <li>
+                        <button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => goHomeAndScroll("navratri_memories")}>
+                          नवरात्रौत्सव फोटो अल्बम
+                        </button>
+                      </li>
+                      <li>
+                        <button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => goHomeAndScroll("govinda_memories")}>
+                          गोविंदा फोटो अल्बम
+                        </button>
+                      </li>
+                      <li>
+                        <button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => goHomeAndScroll("other_memories")}>
+                          इतर उत्सव फोटो अल्बम
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </li>
+              <li>
+                <Button
+                  size="sm"
+                  className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font"
+                >
+                  <DollarSign className="w-4 h-4 mr-1" /> वर्गणी
                 </Button>
               </li>
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>संपर्क</button></li>
+              <li>
+                <button className="hover:text-yellow-200 transition-colors" onClick={() => goHomeAndScroll("contact")}>
+                  संपर्क
+                </button>
+              </li>
             </ul>
             {/* Mobile hamburger */}
-            <button
-              className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-white hover:text-yellow-200 hover:bg-white/10 transition"
-              aria-label="Open Menu"
-              onClick={() => setIsMenuOpen((v) => !v)}
-            >
+            <button className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-white hover:text-yellow-200 hover:bg-white/10 transition" aria-label="Open Menu" onClick={() => setIsMenuOpen(v => !v)}>
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
           {isMenuOpen && (
             <div className="md:hidden mt-4 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm">
               <ul className="py-2 divide-y divide-white/10">
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { goHomeAndScroll('top'); setIsMenuOpen(false); }}>मुख्य</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { goHomeAndScroll('timeline'); setIsMenuOpen(false); }}>कार्यक्रम</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { goHomeAndScroll('memories'); setIsMenuOpen(false); }}>आठवणी</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { goHomeAndScroll('govinda'); setIsMenuOpen(false); }}>गोविंदा</button></li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      onNavigateToAlbum?.();
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    फोटो अल्बम
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      onNavigateToDonation?.();
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    वर्गणी
-                  </button>
-                </li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => navigate("/")}>मुख्य</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => goHomeAndScroll("timeline")}>कार्यक्रम</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => goHomeAndScroll("navratri_memories")}>आठवणी</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => goHomeAndScroll("navratri_memories")}>नवरात्रौत्सव फोटो अल्बम</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => goHomeAndScroll("govinda_memories")}>गोविंदा फोटो अल्बम</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => goHomeAndScroll("other_memories")}>इतर उत्सव फोटो अल्बम</button></li>
+                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => navigate("/donation")}>वर्गणी</button></li>
                 <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>संपर्क</button></li>
               </ul>
             </div>
@@ -137,7 +204,6 @@ export default function DonationPage({ onNavigateToHome, onNavigateToDonation, o
         </div>
       </nav>
 
-      {/* Main Content */}
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -152,7 +218,6 @@ export default function DonationPage({ onNavigateToHome, onNavigateToDonation, o
               मातेच्या कृपेने आपल्या सर्वांचे कल्याण होवो.
             </p>
           </div>
-
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* QR Code Section */}
             <Card className="bg-white/20 backdrop-blur-md border-4 border-yellow-400/50 shadow-2xl">
@@ -169,7 +234,7 @@ export default function DonationPage({ onNavigateToHome, onNavigateToDonation, o
                     </div>
                   </div>
                   <p className="text-sm text-gray-500">MR. SAHIL KADAM</p>
-                  <p className="text-sm text-gray-500">+91 9823000000</p>
+                  <p className="text-sm text-gray-500">++91 93722 85988</p>
                 </div>
                 <div className="space-y-4">
                   <p className="text-lg text-white devanagari-font font-semibold bg-orange-800/30 backdrop-blur-sm rounded-lg p-4 border border-yellow-400/30">
@@ -189,7 +254,6 @@ export default function DonationPage({ onNavigateToHome, onNavigateToDonation, o
                 </div>
               </CardContent>
             </Card>
-
             {/* Google Form Section */}
             <Card className="bg-white/20 backdrop-blur-md border-4 border-yellow-400/50 shadow-2xl">
               <CardHeader className="text-center pb-6">
@@ -212,12 +276,10 @@ export default function DonationPage({ onNavigateToHome, onNavigateToDonation, o
                     </p>
                   </div>
                 </div>
-
                 <div className="space-y-6">
                   <Button
                     size="lg"
-                    className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white shadow-xl transform hover:scale-105 transition-all duration-300 devanagari-font text-xl py-6"
-                    onClick={() =>
+                    className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white shadow-xl transform hover:scale-105 transition-all duration-300 devanagari-font text-xl py-6" onClick={() =>
                       window.open(
                         "https://forms.gle/feh7vdsjvNdVVYAf6",
                         "_blank"
@@ -356,6 +418,9 @@ export default function DonationPage({ onNavigateToHome, onNavigateToDonation, o
           </div>
         </div>
       </footer>
-    </div>
+
+
+
+    </div >
   );
 }

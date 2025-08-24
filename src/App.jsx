@@ -1,64 +1,31 @@
 "use client"
 
-import { useState } from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import HomePage from "./components/HomePage"
 import DonationPage from "./components/DonationPage"
 import PhotoAlbumPage from "./components/PhotoAlbumPage"
 import OtherFestivalsAlbumPage from "./components/OtherFestivalsAlbumPage"
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState("home")
-  const [albumCategory, setAlbumCategory] = useState("navratri")
-
   return (
-    <div className="min-h-screen">
-      {currentPage === "home" && (
-        <HomePage
-          onNavigateToDonation={() => setCurrentPage("donation")}
-          onNavigateToAlbum={(category = "navratri") => {
-            if (category === "other") {
-              setCurrentPage("otherAlbum")
-            } else {
-              setAlbumCategory(category)
-              setCurrentPage("album")
-            }
-          }}
-        />
-      )}
+    <Router>
+      <div className="min-h-screen">
+        <Routes>
+          {/* Home */}
+          <Route path="/" element={<HomePage />} />
 
-      {currentPage === "donation" && (
-        <DonationPage
-          onNavigateToHome={() => setCurrentPage("home")}
-          onNavigateToAlbum={(category = "navratri") => {
-            setAlbumCategory(category)
-            setCurrentPage("album")
-          }}
-          onNavigateToDonation={() => setCurrentPage("donation")}
-        />
-      )}
+          {/* Donation Page */}
+          <Route path="/donation" element={<DonationPage />} />
 
-      {currentPage === "album" && (
-        <PhotoAlbumPage
-          albumCategory={albumCategory}
-          onNavigateToHome={() => setCurrentPage("home")}
-          onNavigateToAlbum={(category = "navratri") => {
-            setAlbumCategory(category)
-            setCurrentPage("album")
-          }}
-          onNavigateToDonation={() => setCurrentPage("donation")}
-        />
-      )}
+          {/* Album Page (with category param) */}
+          <Route path="/album/:category" element={<PhotoAlbumPage />} />
 
-      {currentPage === "otherAlbum" && (
-        <OtherFestivalsAlbumPage
-          onNavigateToHome={() => setCurrentPage("home")}
-          onNavigateToAlbum={(category = "navratri") => {
-            setAlbumCategory(category)
-            setCurrentPage("album")
-          }}
-          onNavigateToDonation={() => setCurrentPage("donation")}
-        />
-      )}
-    </div>
+          {/* <Route path="/navratri-" element={<PhotoAlbumPage/>}/> */}
+
+          {/* Other Festivals Album */}
+          <Route path="/other-album" element={<OtherFestivalsAlbumPage />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }

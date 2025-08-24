@@ -16,6 +16,9 @@ import {
   Menu,
   X,
 } from "lucide-react";
+// import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -52,17 +55,17 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
   // This year's timeline (edit dates/details as needed)
   const timeline = [
     {
-      date: "१ ऑक्टोबर २०२५",
+      date: "२१ सप्टेंबर २०२५",
       title: "देवी आगमन",
       description: "भव्य शोभायात्रेसह देवीचे आगमन आणि स्वागत",
     },
     {
-      date: "२ ऑक्टोबर २०२५",
+      date: "२२ सप्टेंबर २०२५",
       title: "घटस्थापना",
       description: "विधिवत पूजा आणि मंडप उद्घाटन",
     },
     {
-      date: "३-११ ऑक्टोबर २०२५",
+      date: "३-१ ऑक्टोबर २०२५",
       title: "दैनिक आरती व कार्यक्रम",
       description: "सकाळ-संध्याकाळ आरती, भजन, सांस्कृतिक कार्यक्रम",
     },
@@ -77,7 +80,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
       description: "विशेष अलंकार, महाप्रसाद आणि सत्संग",
     },
     {
-      date: "१२ ऑक्टोबर २०२५",
+      date: "३ ऑक्टोबर २०२५",
       title: "विसर्जन मिरवणूक",
       description: "भक्तिपूर्ण मिरवणूक आणि निरोप",
     },
@@ -204,6 +207,21 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
     container.scrollTo({ left: index * slideSize, behavior: "smooth" });
   };
 
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = -450; // adjust this value to match your navbar height
+      const y =
+        element.getBoundingClientRect().top +
+        window.pageYOffset +
+        yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
+
+  const navigate = useNavigate()
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-600 via-orange-500 to-yellow-400 relative overflow-hidden">
       {/* Animated Background Pattern */}
@@ -246,8 +264,12 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               </div>
               <div className="text-left">
                 <div className="amita-font font-bold leading-tight drop-shadow-lg">
-                  <span className="block text-2xl md:text-4xl lg:text-4xl text-white">भंडारवाडा नवरात्रौत्सव</span>
-                  <span className="block text-2xl md:text-3xl lg:text-4xl text-white">मंडळ</span>
+                  <span className="block text-2xl md:text-4xl lg:text-4xl text-white">
+                    भंडारवाडा नवरात्रौत्सव
+                  </span>
+                  <span className="block text-2xl md:text-3xl lg:text-4xl text-white">
+                    मंडळ
+                  </span>
                 </div>
                 <p className="text-red-700 font-bold text-sm lg:text-lg amita-font tracking-wide">
                   सुवर्ण महोत्सवी वर्ष
@@ -256,9 +278,30 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
             </div>
             {/* Desktop nav */}
             <ul className="hidden md:flex items-center space-x-6 text-white font-semibold">
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' })}>मुख्य</button></li>
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' })}>कार्यक्रम</button></li>
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' })}>आठवणी</button></li>
+              <li>
+                <button
+                  className="hover:text-yellow-200 transition-colors"
+                  onClick={() => scrollToSection("top")}
+                >
+                  मुख्य
+                </button>
+              </li>
+              <li>
+                <button
+                  className="hover:text-yellow-200 transition-colors"
+                  onClick={() => scrollToSection("timeline")}
+                >
+                  कार्यक्रम
+                </button>
+              </li>
+              <li>
+                <button
+                  className="hover:text-yellow-200 transition-colors"
+                  onClick={() => scrollToSection("navratri_memories")}
+                >
+                  आठवणी
+                </button>
+              </li>
               <li
                 className="relative"
                 onMouseEnter={openAlbumMenu}
@@ -275,41 +318,148 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   <div className="absolute right-0 mt-2 w-64 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm z-30">
                     <ul className="py-2 divide-y divide-white/10">
                       <li>
-                        <button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' })}>नवरात्रौत्सव फोटो अल्बम</button>
+                        <button
+                          className="w-full text-left px-4 py-3 hover:bg-white/10"
+                          onClick={() => scrollToSection("navratri_memories")}
+                        >
+                          नवरात्रौत्सव फोटो अल्बम
+                        </button>
                       </li>
                       <li>
-                        <button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => document.getElementById('govinda')?.scrollIntoView({ behavior: 'smooth' })}>इतर उत्सव फोटो अल्बम</button>
+                        <button
+                          className="w-full text-left px-4 py-3 hover:bg-white/10"
+                          onClick={() => scrollToSection("govinda_memories")}
+                        >
+                          गोविंदा फोटो अल्बम
+                        </button>
                       </li>
                       <li>
-                        <button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => document.getElementById('govinda')?.scrollIntoView({ behavior: 'smooth' })}>इतर उत्सव फोटो अल्बम</button>
+                        <button
+                          className="w-full text-left px-4 py-3 hover:bg-white/10"
+                          onClick={() => scrollToSection("other_memories")}
+                        >
+                          इतर उत्सव फोटो अल्बम
+                        </button>
                       </li>
                     </ul>
                   </div>
                 )}
               </li>
               <li>
-                <Button size="sm" className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font" onClick={onNavigateToDonation}>
+                <Button
+                  size="sm"
+                  className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font"
+                  onClick={() => navigate("/donation")}
+                >
                   <DollarSign className="w-4 h-4 mr-1" /> वर्गणी
                 </Button>
               </li>
-              <li><button className="hover:text-yellow-200 transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>संपर्क</button></li>
+              <li>
+                <button
+                  className="hover:text-yellow-200 transition-colors"
+                  onClick={() => scrollToSection("contact")}
+                >
+                  संपर्क
+                </button>
+              </li>
             </ul>
             {/* Mobile hamburger */}
-            <button className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-white hover:text-yellow-200 hover:bg-white/10 transition" aria-label="Open Menu" onClick={() => setIsMenuOpen(v => !v)}>
+            <button
+              className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-white hover:text-yellow-200 hover:bg-white/10 transition"
+              aria-label="Open Menu"
+              onClick={() => setIsMenuOpen((v) => !v)}
+            >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
           {isMenuOpen && (
             <div className="md:hidden mt-4 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm">
               <ul className="py-2 divide-y divide-white/10">
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>मुख्य</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>कार्यक्रम</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>आठवणी</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('govinda')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>गोविंदा</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>नवरात्रौत्सव फोटो अल्बम</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('other')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>इतर उत्सव फोटो अल्बम</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { onNavigateToDonation?.(); setIsMenuOpen(false); }}>वर्गणी</button></li>
-                <li><button className="w-full text-left px-4 py-3 hover:bg-white/10" onClick={() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}>संपर्क</button></li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => {
+                      scrollToSection("top");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    मुख्य
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => {
+                      scrollToSection("timeline");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    कार्यक्रम
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => {
+                      scrollToSection("navratri_memories");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    आठवणी
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => {
+                      scrollToSection("navratri_memories");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    नवरात्रौत्सव फोटो अल्बम
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => {
+                      scrollToSection("govinda_memories");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    गोविंदा फोटो अल्बम
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => {
+                      scrollToSection("other_memories");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    इतर उत्सव फोटो अल्बम
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => navigate("/donation")}
+                  >
+                    वर्गणी
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                    onClick={() => {
+                      scrollToSection("contact");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    संपर्क
+                  </button>
+                </li>
               </ul>
             </div>
           )}
@@ -456,7 +606,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
       </section>
 
       {/* Old Memories Section */}
-      <section id="memories" className="py-20 relative z-10">
+      <section id="navratri_memories" className="py-20 relative z-10">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-white mb-12 devanagari-font">
             नवरात्री उत्सवाचा इतिहास
@@ -552,9 +702,9 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
             </div>
           </div>
           {/* Govinda Images Rail */}
-          <div id="govinda" className="mt-20">
+          <div id="govinda_memories" className="mt-20">
             <h3 className="text-3xl font-bold text-center text-white mb-12 devanagari-font">
-            इतर सण
+              इतर सण
             </h3>
             <div className="relative max-w-7xl mx-auto">
               <div
@@ -664,14 +814,14 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
           </div>
 
           {/* Other Images Rail */}
-          <div id="govinda" className="mt-20">
+          <div id="other_memories" className="mt-20">
             <h3 className="text-3xl font-bold text-center text-white mb-12 devanagari-font">
-            इतर सण
+              इतर सण
             </h3>
             <div className="relative max-w-7xl mx-auto">
               <div
                 className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
-                id="govindaRail"
+                id="other_festival_memories_rail"
                 ref={govindaRailRef}
               >
                 {/* Govinda Image 1 */}
@@ -743,7 +893,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* View More Button Card - Inside the Rail */}
                 <div
                   className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
-                  onClick={() => onNavigateToAlbum?.('navratri')}
+                  onClick={() => navigate("/other_festivals_album")}
                 >
                   <div className="text-center p-8">
                     <div className="mb-6">
