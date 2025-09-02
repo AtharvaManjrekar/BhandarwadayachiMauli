@@ -219,8 +219,31 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
     }
   };
 
+  const scrollToSectionDesktop = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = 0; // adjust this value to match your navbar height
+      const y =
+        element.getBoundingClientRect().top +
+        window.pageYOffset +
+        yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   const navigate = useNavigate()
+
+  const goToNavratri = () => {
+    navigate("/navratri-album", { state: { scrollTo: "top" } });
+  };
+
+  const goToGovinda = () => {
+    navigate("/govinda-album", { state: { scrollTo: "top" } });
+  };
+
+  const goToOtherFestivals = () => {
+    navigate("/other-album", { state: { scrollTo: "top" } });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-600 via-orange-500 to-yellow-400 relative overflow-hidden">
@@ -257,7 +280,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
             <div className="flex items-center space-x-4">
               <div className="w-36 h-28 rounded-lg overflow-hidden flex items-center justify-center">
                 <img
-                  src="/assets/devi-mata-logo.jpeg"
+                  src="/optimizied_assests/devi-mata-logo.webp"
                   alt="भंडारवाडयाची माऊली"
                   className="max-w-full max-h-full object-contain"
                 />
@@ -281,7 +304,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               <li>
                 <button
                   className="hover:text-yellow-200 transition-colors"
-                  onClick={() => scrollToSection("top")}
+                  onClick={() => scrollToSectionDesktop("top")}
                 >
                   मुख्य
                 </button>
@@ -289,7 +312,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               <li>
                 <button
                   className="hover:text-yellow-200 transition-colors"
-                  onClick={() => scrollToSection("timeline")}
+                  onClick={() => scrollToSectionDesktop("timeline")}
                 >
                   कार्यक्रम
                 </button>
@@ -297,7 +320,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               <li>
                 <button
                   className="hover:text-yellow-200 transition-colors"
-                  onClick={() => scrollToSection("navratri_memories")}
+                  onClick={() => scrollToSectionDesktop("navratri_memories")}
                 >
                   आठवणी
                 </button>
@@ -320,7 +343,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <li>
                         <button
                           className="w-full text-left px-4 py-3 hover:bg-white/10"
-                          onClick={() => scrollToSection("navratri_memories")}
+                          onClick={() => scrollToSectionDesktop("navratri_memories")}
                         >
                           नवरात्रौत्सव फोटो अल्बम
                         </button>
@@ -328,7 +351,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <li>
                         <button
                           className="w-full text-left px-4 py-3 hover:bg-white/10"
-                          onClick={() => scrollToSection("govinda_memories")}
+                          onClick={() => scrollToSectionDesktop("govinda_memories")}
                         >
                           गोविंदा फोटो अल्बम
                         </button>
@@ -336,7 +359,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <li>
                         <button
                           className="w-full text-left px-4 py-3 hover:bg-white/10"
-                          onClick={() => scrollToSection("other_memories")}
+                          onClick={() => scrollToSectionDesktop("other_memories")}
                         >
                           इतर उत्सव फोटो अल्बम
                         </button>
@@ -550,7 +573,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full blur-3xl opacity-40 animate-pulse"></div>
                 <div className="relative z-10 lg:-mt-10 lg:ml-40 bg-white/10 backdrop-blur-sm rounded-3xl p-8 border-4 border-yellow-400/50 shadow-2xl w-full max-w-full sm:max-w-md lg:max-w-sm">
                   <img
-                    src="/assets/bhandarwada-devi-home-page.jpg"
+                    src="/optimizied_assests/bhandarwada-devi-home-page.webp"
                     alt="देवी माता"
                     className="max-h-[450px] w-full object-contain drop-shadow-2xl rounded-2xl"
                   />
@@ -623,7 +646,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                 <div className="absolute inset-0 card-3d-inner">
                   <img
-                    src="/assets/card-1.jpg"
+                    src="/optimizied_assests/card-1.webp"
                     alt="स्थापना वर्ष"
                     className="w-full h-full object-cover card-3d-media"
                   />
@@ -634,7 +657,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                 <div className="absolute inset-0 card-3d-inner">
                   <img
-                    src="/assets/card-4.jpg"
+                    src="/optimizied_assests/card-2.webp"
                     alt="दशक उत्सव"
                     className="w-full h-full object-cover card-3d-media"
                   />
@@ -645,7 +668,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                 <div className="absolute inset-0 card-3d-inner">
                   <img
-                    src="/assets/card-3.jpg"
+                    src="/optimizied_assests/card-3.webp"
                     alt="रजत महोत्सव"
                     className="w-full h-full object-cover card-3d-media"
                   />
@@ -656,19 +679,17 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                 <div className="absolute inset-0 card-3d-inner">
                   <img
-                    src="/assets/card-5.jpg"
+                    src="/optimizied_assests/card-5.webp"
                     alt="नवीन मंडप"
                     className="w-full h-full object-cover card-3d-media"
                   />
                 </div>
               </div>
 
-              {/* Memory Image 5 */}
-
               {/* View More Button Card - Inside the Rail */}
               <div
                 className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
-                onClick={() => onNavigateToAlbum?.('navratri')}
+                onClick={goToNavratri}
               >
                 <div className="text-center p-8">
                   <div className="mb-6">
@@ -704,7 +725,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
           {/* Govinda Images Rail */}
           <div id="govinda_memories" className="mt-20">
             <h3 className="text-3xl font-bold text-center text-white mb-12 devanagari-font">
-              इतर सण
+              गोविंदा उत्सवाचा इतिहास
             </h3>
             <div className="relative max-w-7xl mx-auto">
               <div
@@ -781,7 +802,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* View More Button Card - Inside the Rail */}
                 <div
                   className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
-                  onClick={() => onNavigateToAlbum?.('navratri')}
+                  onClick={() => navigate("/govinda-album")}
                 >
                   <div className="text-center p-8">
                     <div className="mb-6">
@@ -893,7 +914,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* View More Button Card - Inside the Rail */}
                 <div
                   className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
-                  onClick={() => navigate("/other_festivals_album")}
+                  onClick={() => navigate("/other-album")}
                 >
                   <div className="text-center p-8">
                     <div className="mb-6">
