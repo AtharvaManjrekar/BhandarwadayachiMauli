@@ -32,7 +32,7 @@ export default function PhotoAlbumPage({ albumCategory = 'navratri', onNavigateT
     { name: "सदस्य: हार्दिक नाईक", role: "सदस्य", phone: "+91 9820347924", image: null },
     { name: "सदस्य: सागर पांढरे", role: "सदस्य", phone: "+91 9920765590", image: null },
     { name: "सदस्य: प्रशांत मोरे", role: "सदस्य", phone: "+91 7977511053", image: null },
-    { name: "सदस्य: साहिल कदम", role: "कार्यकारी सदस्य", phone: "+91 9372285988", image: null },
+    { name: "सदस्य: साहिल कदम", role: "सदस्य", phone: "+91 9372285988", image: null },
   ];
 
 
