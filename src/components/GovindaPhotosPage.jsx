@@ -21,12 +21,18 @@ import { useNavigate } from "react-router-dom";
 
 export default function GovindaPhotosPage({ albumCategory = 'navratri', onNavigateToHome, onNavigateToDonation, onNavigateToAlbum }) {
     const members = [
-        { name: "प्रमुख: राजेश पाटील", role: "अध्यक्ष", phone: "+91 98xxxxxx01", image: null },
-        { name: "सचिव: अमित जोशी", role: "सचिव", phone: "+91 98xxxxxx02", image: null },
-        { name: "कोषाध्यक्ष: स्वाती देशमुख", role: "कोषाध्यक्ष", phone: "+91 98xxxxxx03", image: null },
-        { name: "सदस्य: विनोद कदम", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx04", image: null },
-        { name: "सदस्य: पूजा शिंदे", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx05", image: null },
-    ];
+        { name: "अध्यक्ष: राजन तांडेल", role: "अध्यक्ष", phone: "+91 9702479990", image: null },
+        { name: "सचिव: मल्यया लोकम", role: "सचिव", phone: "+91 9967567383", image: null },
+        { name: "कोषाध्यक्ष: अजय गुरव", role: "कोषाध्यक्ष", phone: "+91 9867489964", image: null },
+        { name: "सदस्य: अमित काटविलकर", role: "कार्यकारी सदस्य", phone: "+91 9987294540", image: null },
+        { name: "सदस्य: मंगेश लोकम", role: "कार्यकारी सदस्य", phone: "+91 7671013468", image: null },
+        { name: "सदस्य: राजेश नारकर", role: "सदस्य", phone: "+91 8169436196", image: null },
+        { name: "सदस्य: ओमकार नायडू", role: "सदस्य", phone: "+91 7506753320", image: null },
+        { name: "सदस्य: ओमकार पांढरे", role: "सदस्य", phone: "+91 8433638032", image: null },
+        { name: "सदस्य: हार्दिक नाईक", role: "सदस्य", phone: "+91 9820347924", image: null },
+        { name: "सदस्य: सागर पांढरे", role: "सदस्य", phone: "+91 9920765590", image: null },
+        { name: "सदस्य: प्रशांत मोरे", role: "सदस्य", phone: "+91 7977511053", image: null },
+      ];
 
     const getInitials = (fullName) => {
         if (!fullName) return "";
@@ -612,7 +618,7 @@ export default function GovindaPhotosPage({ albumCategory = 'navratri', onNaviga
                         {/* Members grid */}
                         <div className="mb-8">
                             <h4 className="text-xl font-semibold mb-6 devanagari-font">समिती सदस्य</h4>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                 {members.map((m, idx) => (
                                     <div
                                         key={idx}

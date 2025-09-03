@@ -37,11 +37,17 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
 
   // Society members shown in the footer
   const members = [
-    { name: "प्रमुख: राजेश पाटील", role: "अध्यक्ष", phone: "+91 98xxxxxx01", image: null },
-    { name: "सचिव: अमित जोशी", role: "सचिव", phone: "+91 98xxxxxx02", image: null },
-    { name: "कोषाध्यक्ष: स्वाती देशमुख", role: "कोषाध्यक्ष", phone: "+91 98xxxxxx03", image: null },
-    { name: "सदस्य: विनोद कदम", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx04", image: null },
-    { name: "सदस्य: पूजा शिंदे", role: "कार्यकारी सदस्य", phone: "+91 98xxxxxx05", image: null },
+    { name: "अध्यक्ष: राजन तांडेल", role: "अध्यक्ष", phone: "+91 9702479990", image: null },
+    { name: "सचिव: मल्यया लोकम", role: "सचिव", phone: "+91 9967567383", image: null },
+    { name: "कोषाध्यक्ष: अजय गुरव", role: "कोषाध्यक्ष", phone: "+91 9867489964", image: null },
+    { name: "सदस्य: अमित काटविलकर", role: "कार्यकारी सदस्य", phone: "+91 9987294540", image: null },
+    { name: "सदस्य: मंगेश लोकम", role: "कार्यकारी सदस्य", phone: "+91 7671013468", image: null },
+    { name: "सदस्य: राजेश नारकर", role: "सदस्य", phone: "+91 8169436196", image: null },
+    { name: "सदस्य: ओमकार नायडू", role: "सदस्य", phone: "+91 7506753320", image: null },
+    { name: "सदस्य: ओमकार पांढरे", role: "सदस्य", phone: "+91 8433638032", image: null },
+    { name: "सदस्य: हार्दिक नाईक", role: "सदस्य", phone: "+91 9820347924", image: null },
+    { name: "सदस्य: सागर पांढरे", role: "सदस्य", phone: "+91 9920765590", image: null },
+    { name: "सदस्य: प्रशांत मोरे", role: "सदस्य", phone: "+91 7977511053", image: null },
   ];
 
   const getInitials = (fullName) => {
@@ -305,7 +311,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                     मंडळ
                   </span>
                 </div>
-                <p className="text-red-700 font-bold text-sm lg:text-lg amita-font tracking-wide">
+                <p className="text-red-700 font-bold text-sm lg:text-lg amita-font tracking-wide" style={{ color: '#7A1F1F' }}>
                   सुवर्ण महोत्सवी वर्ष
                 </p>
               </div>
@@ -515,7 +521,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   <span className="block text-5xl md:text-6xl font-extrabold text-yellow-50 lg:ml-12">भंडारवाडा नवरात्रौत्सव</span>
                   <span className="block text-5xl md:text-5xl font-extrabold text-yellow-50 tracking-wide text-center mt-4">मंडळ</span>
                 </div>
-                <div className="text-2xl md:text-4xl text-yellow-200 mb-6 font-bold devanagari-font">
+                <div className="text-2xl md:text-4xl text-yellow-200 mb-6 font-bold devanagari-font" >
                   सुवर्ण महोत्सवी वर्ष
                 </div>
                 <div className="text-xl md:text-2xl text-orange-100 mb-8 font-semibold devanagari-font bg-red-800/30 backdrop-blur-sm rounded-lg p-4 border-2 border-yellow-400/50">
@@ -596,7 +602,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
       </section>
 
       {/* Timeline Section */}
-      <section id="timeline" className="py-20 bg-white/10 backdrop-blur-sm relative z-10">
+      <section id="timeline" className="py-20 relative z-10">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-white mb-3 devanagari-font">या वर्षातील कार्यक्रम</h2>
           <p className="text-center text-yellow-200/90 mb-12 devanagari-font">तारीख, पूजा व विशेष कार्यक्रम</p>
@@ -621,7 +627,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/80 to-red-500/80 border-2 border-yellow-400/60 shadow-xl flex items-center justify-center backdrop-blur-sm">
                             <Icon className="w-7 h-7 text-white" />
                           </div>
-                          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-yellow-400/40 shadow-xl transition-all duration-500 ease-out hover:scale-[1.02]" style={{ transitionDelay: `${idx * 80}ms` }}>
+                          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-yellow-400/40 shadow-xl transition-all duration-500 ease-out hover:scale-[1.02]" style={{ transitionDelay: `${idx * 80}ms` , backgroundColor: '#991B1B'}}>
                             <div className={`devanagari-font text-xs mb-2 ${isLeft ? "justify-end" : "justify-start"} flex`}>
                               <span className="inline-flex items-center bg-yellow-400/15 text-yellow-200 border border-yellow-400/40 rounded-full px-3 py-1">{item.date}</span>
                             </div>
@@ -1011,7 +1017,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   </div>
                 </div>
 
-                
+
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
                     <button
@@ -1029,7 +1035,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                   </div>
                 </div>
 
-                
+
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
                     <button
@@ -1120,7 +1126,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
             {/* Members grid */}
             <div className="mb-8">
               <h4 className="text-xl font-semibold mb-6 devanagari-font">समिती सदस्य</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {members.map((m, idx) => (
                   <div
                     key={idx}
