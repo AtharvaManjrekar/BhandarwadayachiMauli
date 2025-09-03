@@ -15,6 +15,7 @@ import {
   Phone,
   Menu,
   X,
+  Download,
 } from "lucide-react";
 // import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -243,6 +244,16 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
 
   const goToOtherFestivals = () => {
     navigate("/other-album", { state: { scrollTo: "top" } });
+  };
+
+  const downloadFromUrl = (url, filename = "image.jpg") => {
+    if (!url) return;
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -645,8 +656,15 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               {/* Memory Image 1 */}
               <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                 <div className="absolute inset-0 card-3d-inner">
+                  <button
+                    aria-label="Download image"
+                    onClick={(e) => { e.stopPropagation(); downloadFromUrl('/optimizied_assests/card-outer-17_copy.jpg', 'navratri-1.jpg'); }}
+                    className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                  >
+                    <Download className="w-4 h-4" />
+                  </button>
                   <img
-                    src="/optimizied_assests/card-1.webp"
+                    src="/optimizied_assests/card-outer-17_copy.jpg"
                     alt="स्थापना वर्ष"
                     className="w-full h-full object-cover card-3d-media"
                   />
@@ -656,8 +674,15 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               {/* Memory Image 2 */}
               <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                 <div className="absolute inset-0 card-3d-inner">
+                  <button
+                    aria-label="Download image"
+                    onClick={(e) => { e.stopPropagation(); downloadFromUrl('./optimizied_assests/card-4.webp', 'navratri-2.jpg'); }}
+                    className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                  >
+                    <Download className="w-4 h-4" />
+                  </button>
                   <img
-                    src="/optimizied_assests/card-2.webp"
+                    src="./optimizied_assests/card-4.webp"
                     alt="दशक उत्सव"
                     className="w-full h-full object-cover card-3d-media"
                   />
@@ -667,8 +692,15 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               {/* Memory Image 3 */}
               <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                 <div className="absolute inset-0 card-3d-inner">
+                  <button
+                    aria-label="Download image"
+                    onClick={(e) => { e.stopPropagation(); downloadFromUrl('/optimizied_assests/card-outer-14.jpg', 'navratri-3.jpg'); }}
+                    className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                  >
+                    <Download className="w-4 h-4" />
+                  </button>
                   <img
-                    src="/optimizied_assests/card-3.webp"
+                    src="/optimizied_assests/card-outer-14.jpg"
                     alt="रजत महोत्सव"
                     className="w-full h-full object-cover card-3d-media"
                   />
@@ -678,8 +710,32 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
               {/* Memory Image 4 */}
               <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                 <div className="absolute inset-0 card-3d-inner">
+                  <button
+                    aria-label="Download image"
+                    onClick={(e) => { e.stopPropagation(); downloadFromUrl('/optimizied_assests/card-outer-20.jpg', 'navratri-4.jpg'); }}
+                    className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                  >
+                    <Download className="w-4 h-4" />
+                  </button>
                   <img
-                    src="/optimizied_assests/card-5.webp"
+                    src="/optimizied_assests/card-outer-20.jpg"
+                    alt="नवीन मंडप"
+                    className="w-full h-full object-cover card-3d-media"
+                  />
+                </div>
+              </div>
+
+              <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
+                <div className="absolute inset-0 card-3d-inner">
+                  <button
+                    aria-label="Download image"
+                    onClick={(e) => { e.stopPropagation(); downloadFromUrl('/optimizied_assests/card-inner-1.jpg', 'navratri-5.jpg'); }}
+                    className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                  >
+                    <Download className="w-4 h-4" />
+                  </button>
+                  <img
+                    src="/optimizied_assests/card-inner-1.jpg"
                     alt="नवीन मंडप"
                     className="w-full h-full object-cover card-3d-media"
                   />
@@ -736,6 +792,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 1 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-2.jpg', 'govinda-1.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-2.jpg"
                       alt="गोविंदा 1"
@@ -747,6 +810,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 2 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-3.jpg', 'govinda-2.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-3.jpg"
                       alt="गोविंदा 2"
@@ -758,6 +828,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 3 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-4.jpg', 'govinda-3.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-4.jpg"
                       alt="गोविंदा 3"
@@ -769,6 +846,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 4 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-5.jpg', 'govinda-4.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-5.jpg"
                       alt="गोविंदा 4"
@@ -780,6 +864,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 5 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-6.jpg', 'govinda-5.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-6.jpg"
                       alt="गोविंदा 5"
@@ -791,6 +882,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 6 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-1.jpg', 'govinda-6.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-1.jpg"
                       alt="गोविंदा 6"
@@ -848,6 +946,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 1 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-2.jpg', 'govinda-1.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-2.jpg"
                       alt="गोविंदा 1"
@@ -859,6 +964,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 2 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-3.jpg', 'govinda-2.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-3.jpg"
                       alt="गोविंदा 2"
@@ -870,6 +982,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 3 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-4.jpg', 'govinda-3.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-4.jpg"
                       alt="गोविंदा 3"
@@ -881,6 +1000,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 4 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-5.jpg', 'govinda-4.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-5.jpg"
                       alt="गोविंदा 4"
@@ -892,6 +1018,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 5 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-6.jpg', 'govinda-5.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-6.jpg"
                       alt="गोविंदा 5"
@@ -903,6 +1036,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 {/* Govinda Image 6 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl('/assets/card-1.jpg', 'govinda-6.jpg'); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src="/assets/card-1.jpg"
                       alt="गोविंदा 6"

@@ -50,213 +50,187 @@ export default function PhotoAlbumPage({ albumCategory = 'navratri', onNavigateT
   const photos = [
     {
       id: 1,
-      src: "./src/assets/album/photo-1.jpg",
-      year: "२०२४",
-      title: "सुवर्ण महोत्सव",
-      description: "५०वा वर्धापन दिन उत्सव",
+      src: "./optimizied_assests/card-2.webp",
     },
     {
       id: 2,
-      src: "./src/assets/album/photo-2.jpg",
-      year: "२०२३",
-      title: "देवी प्रतिष्ठापना",
-      description: "पवित्र देवी मूर्ती स्थापना",
+      src: "./optimizied_assests/card-6.webp",
     },
     {
       id: 3,
-      src: "./src/assets/album/photo-3.jpg",
-      year: "२०२३",
-      title: "आरती",
-      description: "संध्याकाळची भव्य आरती",
+      src: "./optimizied_assests/devi-extra-card-1.webp",
     },
     {
       id: 4,
-      src: "./src/assets/album/photo-4.jpg",
-      year: "२०२२",
-      title: "सांस्कृतिक कार्यक्रम",
-      description: "भक्तांचे सुंदर नृत्य",
+      src: "./optimizied_assests/devi-extra-card-15.png",
     },
     {
       id: 5,
-      src: "./src/assets/album/photo-5.jpg",
+      src: "./optimizied_assests/card-9.jpg",
       year: "२०२२",
       title: "प्रसाद वितरण",
       description: "भक्तांना प्रसाद वाटप",
     },
     {
       id: 6,
-      src: "./src/assets/album/photo-6.jpg",
+      src: "./optimizied_assests/card-10.jpg",
       year: "२०२१",
       title: "कोविड काळ",
       description: "सुरक्षित उत्सव",
     },
     {
       id: 7,
-      src: "./src/assets/album/photo-7.jpg",
+      src: "./optimizied_assests/card-11.jpg",
       year: "२०२०",
       title: "ऑनलाइन दर्शन",
       description: "डिजिटल माध्यमातून दर्शन",
     },
     {
       id: 8,
-      src: "./src/assets/album/photo-8.jpg",
+      src: "./optimizied_assests/card-12.jpg",
       year: "२०१९",
       title: "मंडप सजावट",
       description: "भव्य मंडप अलंकरण",
     },
     {
       id: 9,
-      src: "./src/assets/album/photo-9.jpg",
+      src: "./optimizied_assests/card-13.jpg",
       year: "२०१९",
       title: "भजन संध्या",
       description: "भक्तिगीतांचा कार्यक्रम",
     },
     {
       id: 10,
-      src: "./src/assets/album/photo-10.jpg",
+      src: "./optimizied_assests/card-15.jpg",
       year: "२०१८",
       title: "विसर्जन",
       description: "पवित्र विसर्जन सोहळा",
     },
     {
       id: 11,
-      src: "./src/assets/album/photo-11.jpg",
+      src: "./optimizied_assests/card-16.jpg",
       year: "२०१८",
       title: "बाल कलाकार",
       description: "लहान मुलांचे सादरीकरण",
     },
     {
       id: 12,
-      src: "./src/assets/album/photo-12.jpg",
+      src: "./optimizied_assests/card-18.jpg",
       year: "२०१७",
       title: "महिला मंडळ",
       description: "महिलांचा सहभाग",
     },
     {
       id: 13,
-      src: "./src/assets/album/photo-13.jpg",
+      src: "./optimizied_assests/card-19.jpg",
       year: "२०१७",
       title: "युवा शक्ती",
       description: "तरुणांचे योगदान",
     },
     {
       id: 14,
-      src: "./src/assets/album/photo-14.jpg",
+      src: "./optimizied_assests/card-14.jpg",
       year: "२०१६",
       title: "४०वा वर्धापन दिन",
       description: "चाळीसावा वर्षगांठ",
     },
     {
       id: 15,
-      src: "./src/assets/album/photo-15.jpg",
+      src: "./optimizied_assests/card-17.jpg",
       year: "२०१५",
       title: "नवीन परंपरा",
       description: "आधुनिक तंत्रज्ञानाचा वापर",
     },
     {
       id: 16,
-      src: "./src/assets/album/photo-16.jpg",
+      src: "/optimizied_assests/card-20.jpg",
       year: "२०१४",
       title: "समुदायिक सेवा",
       description: "समाजसेवेचे कार्य",
     },
     {
       id: 17,
-      src: "./src/assets/album/photo-17.jpg",
+      src: "./optimizied_assests/card-21.jpg",
       year: "२०१३",
       title: "पारंपरिक नृत्य",
       description: "लावणी आणि कथक",
     },
     {
       id: 18,
-      src: "./src/assets/album/photo-18.jpg",
+      src: "./optimizied_assests/card-22.jpg",
       year: "२०१२",
       title: "धार्मिक प्रवचन",
       description: "संतांचे उपदेश",
     },
     {
       id: 19,
-      src: "./src/assets/album/photo-19.jpg",
+      src: "./optimizied_assests/card-23.jpg",
       year: "२०११",
       title: "अन्नदान",
       description: "निःशुल्क भोजन वितरण",
     },
     {
       id: 20,
-      src: "./src/assets/album/photo-20.jpg",
+      src: "./optimizied_assests/card-24.jpg",
       year: "२०१०",
       title: "सांस्कृतिक संध्या",
       description: "कलाकारांचे सादरीकरण",
     },
     {
       id: 21,
-      src: "./src/assets/album/photo-21.jpg",
+      src: "./optimizied_assests/card-26.jpg",
       year: "२००९",
       title: "मंडळाचे सदस्य",
       description: "कार्यकर्त्यांची सभा",
     },
     {
       id: 22,
-      src: "./src/assets/album/photo-22.jpg",
+      src: "./optimizied_assests/card-27.jpg",
       year: "२००८",
       title: "देवी शोभायात्रा",
       description: "रंगारंग मिरवणूक",
     },
     {
       id: 23,
-      src: "./src/assets/album/photo-23.jpg",
+      src: "./optimizied_assests/card-28.jpg",
       year: "२००७",
       title: "पुरस्कार वितरण",
       description: "उत्कृष्ट सेवेचा सन्मान",
     },
     {
       id: 24,
-      src: "./src/assets/album/photo-24.jpg",
+      src: "./optimizied_assests/card-29.jpg",
       year: "२००६",
       title: "३०वा वर्धापन दिन",
       description: "तीसावा वर्षगांठ उत्सव",
     },
     {
       id: 25,
-      src: "./src/assets/album/photo-25.jpg",
+      src: "./optimizied_assests/card-30.jpg",
       year: "२००५",
       title: "नवीन मंडप उद्घाटन",
       description: "आधुनिक मंडप निर्माण",
     },
     {
       id: 26,
-      src: "./src/assets/album/photo-26.jpg",
+      src: "./optimizied_assests/card-31.jpg",
       year: "२०००",
       title: "सहस्राब्दी उत्सव",
       description: "नवीन सहस्राब्दीचे स्वागत",
     },
     {
       id: 27,
-      src: "./src/assets/album/photo-27.jpg",
+      src: "./optimizied_assests/card-32.jpg",
       year: "१९९५",
       title: "रजत महोत्सव",
       description: "२५ वर्षांचा प्रवास",
     },
     {
       id: 28,
-      src: "./src/assets/album/photo-28.jpg",
+      src: "./optimizied_assests/card-33.jpg",
       year: "१९९०",
       title: "पारंपरिक उत्सव",
       description: "जुन्या पद्धतीचा उत्सव",
-    },
-    {
-      id: 29,
-      src: "./src/assets/album/photo-29.jpg",
-      year: "१९८५",
-      title: "दशक उत्सव",
-      description: "पहिला मोठा उत्सव",
-    },
-    {
-      id: 30,
-      src: "./src/assets/album/photo-30.jpg",
-      year: "१९७६",
-      title: "स्थापना",
-      description: "मंडळाची स्थापना",
     },
   ];
 
@@ -290,8 +264,30 @@ export default function PhotoAlbumPage({ albumCategory = 'navratri', onNavigateT
     }
   };
 
+  const downloadFromUrl = (url, filename = "image.jpg") => {
+    if (!url) return;
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const [isAlbumMenuOpen, setIsAlbumMenuOpen] = useState(false);
   const albumMenuTimeoutRef = useRef(null);
+
+  // Track image orientation so we can adapt card aspect-ratios per image
+  const [imageOrientations, setImageOrientations] = useState({});
+
+  const handleImageLoad = (id) => (e) => {
+    const img = e.currentTarget;
+    const { naturalWidth, naturalHeight } = img;
+    let orientation = "landscape";
+    if (naturalWidth === naturalHeight) orientation = "square";
+    else if (naturalWidth < naturalHeight) orientation = "portrait";
+    setImageOrientations((prev) => ({ ...prev, [id]: orientation }));
+  };
 
   const openAlbumMenu = () => {
     if (albumMenuTimeoutRef.current) {
@@ -576,40 +572,40 @@ export default function PhotoAlbumPage({ albumCategory = 'navratri', onNavigateT
       {/* Photo Gallery */}
       <section className="py-12 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {photos.map((photo, index) => (
-              <Card
-                key={photo.id}
-                className="group cursor-pointer overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-yellow-400/30 hover:border-yellow-400 shadow-xl transform hover:scale-105 transition-all duration-300"
-                onClick={() => openModal(photo, index)}
-              >
-                <CardContent className="p-0 relative">
-                  <div className="aspect-square overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+            {photos.map((photo, index) => {
+              const orientation = imageOrientations[photo.id];
+              // Choose aspect ratio based on detected orientation
+              const aspectClass = orientation === "portrait"
+                ? "aspect-[3/4] sm:aspect-[2/3] md:aspect-[3/4] lg:aspect-[2/3]"
+                : orientation === "square"
+                  ? "aspect-[1/1]"
+                  : "aspect-[16/9] sm:aspect-[4/3] md:aspect-[4/3] lg:aspect-[16/9]";
+
+              return (
+                <div
+                  key={photo.id}
+                  className="group cursor-pointer overflow-hidden rounded-3xl bg-white/10 backdrop-blur-sm border-2 border-yellow-400/30 hover:border-yellow-400 shadow-xl transform hover:scale-105 transition-all duration-300"
+                  onClick={() => openModal(photo, index)}
+                >
+                  <div className={`relative overflow-hidden ${aspectClass}`}>
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl(photo.src, `photo-${photo.id}.jpg`); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src={photo.src || "/placeholder.svg"}
                       alt={photo.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      onLoad={handleImageLoad(photo.id)}
+                      className="absolute inset-0 w-full h-full object-cover object-center block group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-yellow-300 font-bold devanagari-font text-lg">
-                          {photo.year}
-                        </span>
-                        <Heart className="w-5 h-5 text-red-400" />
-                      </div>
-                      <h3 className="text-white font-bold devanagari-font text-sm mb-1">
-                        {photo.title}
-                      </h3>
-                      <p className="text-white/80 devanagari-font text-xs">
-                        {photo.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
