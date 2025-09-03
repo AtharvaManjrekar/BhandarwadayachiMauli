@@ -41,6 +41,7 @@ export default function OtherFestivalsAlbumPage({ albumCategory = 'navratri', on
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [imageOrientations, setImageOrientations] = useState({});
 
 
   // Sample photo data - you can replace with your actual photos
@@ -287,6 +288,25 @@ export default function OtherFestivalsAlbumPage({ albumCategory = 'navratri', on
     }
   };
 
+  const downloadFromUrl = (url, filename = "image.jpg") => {
+    if (!url) return;
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleImageLoad = (id) => (e) => {
+    const img = e.currentTarget;
+    const { naturalWidth, naturalHeight } = img;
+    let orientation = "landscape";
+    if (naturalWidth === naturalHeight) orientation = "square";
+    else if (naturalWidth < naturalHeight) orientation = "portrait";
+    setImageOrientations((prev) => ({ ...prev, [id]: orientation }));
+  };
+
   const [isAlbumMenuOpen, setIsAlbumMenuOpen] = useState(false);
   const albumMenuTimeoutRef = useRef(null);
 
@@ -473,99 +493,102 @@ export default function OtherFestivalsAlbumPage({ albumCategory = 'navratri', on
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm">
-              <ul className="py-2 divide-y divide-white/10">
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      scrollToSection("top");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    मुख्य
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("timeline");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    कार्यक्रम
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("navratri_memories");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    आठवणी
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("navratri_memories");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    नवरात्रौत्सव फोटो अल्बम
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("govinda_memories");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    गोविंदा फोटो अल्बम
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("other_memories");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    इतर उत्सव फोटो अल्बम
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => navigate("/donation")}
-                  >
-                    वर्गणी
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      scrollToSection("contact");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    संपर्क
-                  </button>
-                </li>
-              </ul>
-            </div>
-          )}
+          {false}
         </div>
       </nav>
+      {isMenuOpen && (
+        <div className="md:hidden px-4">
+          <div className="mt-4 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm">
+            <ul className="py-2 divide-y divide-white/10">
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("top");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  मुख्य
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("timeline");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  कार्यक्रम
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("navratri_memories");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  आठवणी
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("navratri_memories");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  नवरात्रौत्सव फोटो अल्बम
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("govinda_memories");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  गोविंदा फोटो अल्बम
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("other_memories");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  इतर उत्सव फोटो अल्बम
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => navigate("/donation")}
+                >
+                  वर्गणी
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    scrollToSection("contact");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  संपर्क
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
 
       {/* Header Section */}
       <section id="top" className="py-16 relative z-10">
@@ -585,40 +608,39 @@ export default function OtherFestivalsAlbumPage({ albumCategory = 'navratri', on
       {/* Photo Gallery */}
       <section className="py-12 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {photos.map((photo, index) => (
-              <Card
-                key={photo.id}
-                className="group cursor-pointer overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-yellow-400/30 hover:border-yellow-400 shadow-xl transform hover:scale-105 transition-all duration-300"
-                onClick={() => openModal(photo, index)}
-              >
-                <CardContent className="p-0 relative">
-                  <div className="aspect-square overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+            {photos.map((photo, index) => {
+              const orientation = imageOrientations[photo.id];
+              const aspectClass = orientation === "portrait"
+                ? "aspect-[3/4] sm:aspect-[2/3] md:aspect-[3/4] lg:aspect-[2/3]"
+                : orientation === "square"
+                  ? "aspect-[1/1]"
+                  : "aspect-[16/9] sm:aspect-[4/3] md:aspect-[4/3] lg:aspect-[16/9]";
+
+              return (
+                <div
+                  key={photo.id}
+                  className="group cursor-pointer overflow-hidden rounded-3xl bg-white/10 backdrop-blur-sm border-2 border-yellow-400/30 hover:border-yellow-400 shadow-xl transform hover:scale-105 transition-all duration-300"
+                  onClick={() => openModal(photo, index)}
+                >
+                  <div className={`relative overflow-hidden ${aspectClass}`}>
+                    <button
+                      aria-label="Download image"
+                      onClick={(e) => { e.stopPropagation(); downloadFromUrl(photo.src, `photo-${photo.id}.jpg`); }}
+                      className="absolute top-2 right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                     <img
                       src={photo.src || "/placeholder.svg"}
                       alt={photo.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      onLoad={handleImageLoad(photo.id)}
+                      className="absolute inset-0 w-full h-full object-cover object-center block group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-yellow-300 font-bold devanagari-font text-lg">
-                          {photo.year}
-                        </span>
-                        <Heart className="w-5 h-5 text-red-400" />
-                      </div>
-                      <h3 className="text-white font-bold devanagari-font text-sm mb-1">
-                        {photo.title}
-                      </h3>
-                      <p className="text-white/80 devanagari-font text-xs">
-                        {photo.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

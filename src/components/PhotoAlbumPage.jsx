@@ -460,99 +460,102 @@ export default function PhotoAlbumPage({ albumCategory = 'navratri', onNavigateT
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm">
-              <ul className="py-2 divide-y divide-white/10">
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      scrollToSection("top");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    मुख्य
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("timeline");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    कार्यक्रम
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("navratri_memories");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    आठवणी
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("navratri_memories");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    नवरात्रौत्सव फोटो अल्बम
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("govinda_memories");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    गोविंदा फोटो अल्बम
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      goHomeAndScroll("other_memories");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    इतर उत्सव फोटो अल्बम
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => navigate("/donation")}
-                  >
-                    वर्गणी
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="w-full text-left px-4 py-3 hover:bg-white/10"
-                    onClick={() => {
-                      scrollToSection("contact");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    संपर्क
-                  </button>
-                </li>
-              </ul>
-            </div>
-          )}
+          {false}
         </div>
       </nav>
+      {isMenuOpen && (
+        <div className="md:hidden px-4">
+          <div className="mt-4 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm">
+            <ul className="py-2 divide-y divide-white/10">
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("top");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  मुख्य
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("timeline");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  कार्यक्रम
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("navratri_memories");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  आठवणी
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("navratri_memories");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  नवरात्रौत्सव फोटो अल्बम
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("govinda_memories");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  गोविंदा फोटो अल्बम
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    goHomeAndScroll("other_memories");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  इतर उत्सव फोटो अल्बम
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => navigate("/donation")}
+                >
+                  वर्गणी
+                </button>
+              </li>
+              <li>
+                <button
+                  className="w-full text-left px-4 py-3 hover:bg-white/10"
+                  onClick={() => {
+                    scrollToSection("contact");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  संपर्क
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
 
       {/* Header Section */}
       <section id="top" className="py-16 relative z-10">

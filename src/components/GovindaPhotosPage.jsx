@@ -39,9 +39,9 @@ export default function GovindaPhotosPage({ albumCategory = 'navratri', onNaviga
     const [selectedImage, setSelectedImage] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    
 
-    const navigate = useNavigate(); 
+
+    const navigate = useNavigate();
 
     // Sample photo data - you can replace with your actual photos
     const photos = [
@@ -287,7 +287,7 @@ export default function GovindaPhotosPage({ albumCategory = 'navratri', onNaviga
         }
     };
 
-    
+
 
     const [isAlbumMenuOpen, setIsAlbumMenuOpen] = useState(false);
     const albumMenuTimeoutRef = useRef(null);
@@ -308,26 +308,26 @@ export default function GovindaPhotosPage({ albumCategory = 'navratri', onNaviga
             setIsAlbumMenuOpen(false);
         }, 150);
     };
-    
+
 
     const goHomeAndScroll = (id) => {
         navigate("/"); // first go home
         setTimeout(() => {
-          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
         }, 200); // small delay so page loads
-      };
-    
-      const scrollToSection = (id) => {
+    };
+
+    const scrollToSection = (id) => {
         const element = document.getElementById(id);
         if (element) {
-          const yOffset = 0; // adjust this value to match your navbar height
-          const y =
-            element.getBoundingClientRect().top +
-            window.pageYOffset +
-            yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
+            const yOffset = 0; // adjust this value to match your navbar height
+            const y =
+                element.getBoundingClientRect().top +
+                window.pageYOffset +
+                yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
         }
-      };
+    };
 
 
     return (
@@ -441,7 +441,7 @@ export default function GovindaPhotosPage({ albumCategory = 'navratri', onNaviga
                                 <Button
                                     size="sm"
                                     className="bg-yellow-400 text-red-800 border-yellow-400 hover:bg-yellow-300 devanagari-font"
-                                    onClick={navigate("/donation")}
+                                    onClick={() => navigate("/donation")}
                                 >
                                     <DollarSign className="w-4 h-4 mr-1" /> वर्गणी
                                 </Button>
@@ -456,7 +456,7 @@ export default function GovindaPhotosPage({ albumCategory = 'navratri', onNaviga
                             </li>
                         </ul>
                         {/* Mobile hamburger */}
-                        <button
+                        {/* <button
                             className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-white hover:text-yellow-200 hover:bg-white/10 transition"
                             aria-label="Open Menu"
                             onClick={() => setIsMenuOpen((v) => !v)}
@@ -471,7 +471,7 @@ export default function GovindaPhotosPage({ albumCategory = 'navratri', onNaviga
                                     <button
                                         className="w-full text-left px-4 py-3 hover:bg-white/10"
                                         onClick={() => {
-                                            scrollToSection("top");
+                                            goHomeAndScroll("top");
                                             setIsMenuOpen(false);
                                         }}
                                     >
@@ -554,15 +554,124 @@ export default function GovindaPhotosPage({ albumCategory = 'navratri', onNaviga
                                 </li>
                             </ul>
                         </div>
-                    )}
+                    )} */}
+
+                        {/* Mobile hamburger */}
+                        <button
+                            className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-white hover:text-yellow-200 hover:bg-white/10 transition"
+                            aria-label="Open Menu"
+                            onClick={() => setIsMenuOpen((v) => !v)}
+                        >
+                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
+
+                    </div>
+
                 </div>
             </nav>
+            {/* Mobile Menu - render outside the flex row so it spans full width like other pages */}
+            {isMenuOpen && (
+                <div className="md:hidden px-4">
+                    <div className="mt-4 bg-white/10 border border-white/20 rounded-xl text-white shadow-xl backdrop-blur-sm">
+                        <ul className="py-2 divide-y divide-white/10">
+                            <li>
+                                <button
+                                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                                    onClick={() => {
+                                        goHomeAndScroll("top");
+                                        setIsMenuOpen(false);
+                                    }}
+                                >
+                                    मुख्य
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                                    onClick={() => {
+                                        goHomeAndScroll("timeline");
+                                        setIsMenuOpen(false);
+                                    }}
+                                >
+                                    कार्यक्रम
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                                    onClick={() => {
+                                        goHomeAndScroll("navratri_memories");
+                                        setIsMenuOpen(false);
+                                    }}
+                                >
+                                    आठवणी
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                                    onClick={() => {
+                                        goHomeAndScroll("navratri_memories");
+                                        setIsMenuOpen(false);
+                                    }}
+                                >
+                                    नवरात्रौत्सव फोटो अल्बम
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                                    onClick={() => {
+                                        goHomeAndScroll("govinda_memories");
+                                        setIsMenuOpen(false);
+                                    }}
+                                >
+                                    गोविंदा फोटो अल्बम
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                                    onClick={() => {
+                                        goHomeAndScroll("other_memories");
+                                        setIsMenuOpen(false);
+                                    }}
+                                >
+                                    इतर उत्सव फोटो अल्बम
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                                    onClick={() => {
+                                        navigate("/donation");
+                                        setIsMenuOpen(false);
+                                    }}
+                                >
+                                    वर्गणी
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="w-full text-left px-4 py-3 hover:bg-white/10"
+                                    onClick={() => {
+                                        scrollToSection("contact");
+                                        setIsMenuOpen(false);
+                                    }}
+                                >
+                                    संपर्क
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            )}
 
             {/* Header Section */}
             <section id="top" className="py-16 relative z-10">
                 <div className="container mx-auto px-4 text-center">
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg devanagari-font">
-                    गोविंदा फोटो अल्बम
+                        गोविंदा फोटो अल्बम
                     </h1>
                     <div className="text-2xl text-yellow-200 mb-8 font-semibold devanagari-font bg-red-800/30 backdrop-blur-sm rounded-lg p-6 border-2 border-yellow-400/50 max-w-4xl mx-auto">
                         || श्री ब्राह्मणदेव प्रसन्न ||
