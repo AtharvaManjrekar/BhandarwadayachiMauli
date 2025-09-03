@@ -73,18 +73,18 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
       description: "विधिवत पूजा आणि मंडप उद्घाटन",
     },
     {
-      date: "३-१ ऑक्टोबर २०२५",
-      title: "दैनिक आरती व कार्यक्रम",
-      description: "सकाळ-संध्याकाळ आरती, भजन, सांस्कृतिक कार्यक्रम",
+      date: "२८ सप्टेंबर २०२५",
+      title: "बँजो गरबा",
+      description: "संध्याकाळ आरती नंतर",
     },
     {
-      date: "५ ऑक्टोबर २०२५",
-      title: "गरबा/दांडिया",
-      description: "समस्त भाविकांसाठी दांडिया नाईट",
+      date: "१ ऑक्टोबर २०२५",
+      title: "महाप्रसाद",
+      description: "समस्त भाविकांसाठी महाप्रसाद",
     },
     {
-      date: "८ ऑक्टोबर २०२५",
-      title: "महालक्ष्मी पूजा",
+      date: "२ ऑक्टोबर २०२५",
+      title: "दसरा",
       description: "विशेष अलंकार, महाप्रसाद आणि सत्संग",
     },
     {
