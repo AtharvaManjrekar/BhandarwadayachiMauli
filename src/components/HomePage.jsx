@@ -800,7 +800,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-2.jpg"
+                      src="./optimizied_assests/govinda-card-6.jpg"
                       alt="गोविंदा 1"
                       className="w-full h-full object-cover card-3d-media"
                     />
@@ -818,7 +818,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-3.jpg"
+                      src="./optimizied_assests/govinda-card-9.jpg"
                       alt="गोविंदा 2"
                       className="w-full h-full object-cover card-3d-media"
                     />
@@ -836,7 +836,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-4.jpg"
+                      src="./optimizied_assests/govinda-card-8.jpg"
                       alt="गोविंदा 3"
                       className="w-full h-full object-cover card-3d-media"
                     />
@@ -854,7 +854,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-5.jpg"
+                      src="./optimizied_assests/govinda-card-7.jpg"
                       alt="गोविंदा 4"
                       className="w-full h-full object-cover card-3d-media"
                     />
@@ -872,7 +872,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-6.jpg"
+                      src="./optimizied_assests/govinda-card-10.jpg"
                       alt="गोविंदा 5"
                       className="w-full h-full object-cover card-3d-media"
                     />
@@ -890,7 +890,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-1.jpg"
+                      src="./optimizied_assests/govinda-card-13.jpg"
                       alt="गोविंदा 6"
                       className="w-full h-full object-cover card-3d-media"
                     />
@@ -935,7 +935,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
           {/* Other Images Rail */}
           <div id="other_memories" className="mt-20">
             <h3 className="text-3xl font-bold text-center text-white mb-12 devanagari-font">
-              इतर सण
+              इतर सण (ब्रह्मणदेव पूजा , स्वातंत्र्यदिन , प्रजासत्ताक दिन , नववर्ष साजरा , नारळी पौर्णिमा)
             </h3>
             <div className="relative max-w-7xl mx-auto">
               <div
@@ -943,7 +943,6 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 id="other_festival_memories_rail"
                 ref={govindaRailRef}
               >
-                {/* Govinda Image 1 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
                     <button
@@ -954,14 +953,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-2.jpg"
+                      src="/optimizied_assests/other-festival-card-1.jpg"
                       alt="गोविंदा 1"
                       className="w-full h-full object-cover card-3d-media"
                     />
                   </div>
                 </div>
 
-                {/* Govinda Image 2 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
                     <button
@@ -972,14 +970,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-3.jpg"
+                      src="/optimizied_assests/other-festival-card-2.jpg"
                       alt="गोविंदा 2"
                       className="w-full h-full object-cover card-3d-media"
                     />
                   </div>
                 </div>
 
-                {/* Govinda Image 3 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
                     <button
@@ -990,14 +987,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-4.jpg"
+                      src="/optimizied_assests/other-festival-6.jpg"
                       alt="गोविंदा 3"
                       className="w-full h-full object-cover card-3d-media"
                     />
                   </div>
                 </div>
 
-                {/* Govinda Image 4 */}
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
                     <button
@@ -1008,14 +1004,14 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-5.jpg"
+                      src="/optimizied_assests/other-festival-4.jpg"
                       alt="गोविंदा 4"
                       className="w-full h-full object-cover card-3d-media"
                     />
                   </div>
                 </div>
 
-                {/* Govinda Image 5 */}
+                
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
                     <button
@@ -1026,14 +1022,14 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-6.jpg"
+                      src="/optimizied_assests/other-festival-5.jpg"
                       alt="गोविंदा 5"
                       className="w-full h-full object-cover card-3d-media"
                     />
                   </div>
                 </div>
 
-                {/* Govinda Image 6 */}
+                
                 <div className="flex-shrink-0 group relative overflow-hidden rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-white/10 backdrop-blur-sm transition-all duration-500 w-80 h-80 memory-rail-item snap-center card-3d">
                   <div className="absolute inset-0 card-3d-inner">
                     <button
@@ -1044,30 +1040,13 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                       <Download className="w-4 h-4" />
                     </button>
                     <img
-                      src="/assets/card-1.jpg"
+                      src="/optimizied_assests/other-festival-card-6.jpg"
                       alt="गोविंदा 6"
                       className="w-full h-full object-cover card-3d-media"
                     />
                   </div>
                 </div>
 
-                {/* View More Button Card - Inside the Rail */}
-                <div
-                  className="flex-shrink-0 flex items-center justify-center rounded-3xl shadow-2xl border-4 border-yellow-400/50 bg-gradient-to-br from-orange-500/80 to-red-500/80 backdrop-blur-sm w-80 h-80 cursor-pointer transform hover:scale-105 transition-all duration-500 group memory-rail-item snap-center"
-                  onClick={() => navigate("/other-album")}
-                >
-                  <div className="text-center p-8">
-                    <div className="mb-6">
-                      <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-white/30 transition-all duration-300">
-                        <ArrowRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform duration-300" />
-                      </div>
-                    </div>
-                    <div className="mt-4 flex items-center justify-center space-x-2">
-                      <Heart className="w-5 h-5 text-pink-200" />
-                      <span className="text-white/80 devanagari-font text-sm">अधिक फोटो</span>
-                    </div>
-                  </div>
-                </div>
               </div>
               {/* Scroll Navigation Dots (dynamic) */}
               <div className="flex justify-center mt-8 space-x-3">

@@ -48,14 +48,11 @@ export default function OtherFestivalsAlbumPage({ albumCategory = 'navratri', on
   const photos = [
     {
       id: 1,
-      src: "./src/assets/album/photo-1.jpg",
-      year: "२०२४",
-      title: "सुवर्ण महोत्सव",
-      description: "५०वा वर्धापन दिन उत्सव",
+      src: "/optimizied_assests/other-festival-card-6.jpg",
     },
     {
       id: 2,
-      src: "./src/assets/album/photo-2.jpg",
+      src: "/optimizied_assests/other-festival-card-7.jpg",
       year: "२०२३",
       title: "देवी प्रतिष्ठापना",
       description: "पवित्र देवी मूर्ती स्थापना",
