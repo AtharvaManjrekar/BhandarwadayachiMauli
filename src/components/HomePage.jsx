@@ -574,7 +574,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white shadow-xl transform hover:scale-105 transition-all duration-300 devanagari-font text-lg px-8 py-4"
-                  onClick={onNavigateToDonation}
+                  onClick={() => navigate("/donation")}
                 >
                   <Heart className="w-6 h-6 mr-3" />
                   वर्गणी द्या
@@ -628,7 +628,7 @@ export default function HomePage({ onNavigateToDonation, onNavigateToAlbum }) {
                           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/80 to-red-500/80 border-2 border-yellow-400/60 shadow-xl flex items-center justify-center backdrop-blur-sm">
                             <Icon className="w-7 h-7 text-white" />
                           </div>
-                          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-yellow-400/40 shadow-xl transition-all duration-500 ease-out hover:scale-[1.02]" style={{ transitionDelay: `${idx * 80}ms` , backgroundColor: '#991B1B'}}>
+                          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-yellow-400/40 shadow-xl transition-all duration-500 ease-out hover:scale-[1.02]" style={{ transitionDelay: `${idx * 80}ms`, backgroundColor: '#991B1B' }}>
                             <div className={`devanagari-font text-xs mb-2 ${isLeft ? "justify-end" : "justify-start"} flex`}>
                               <span className="inline-flex items-center bg-yellow-400/15 text-yellow-200 border border-yellow-400/40 rounded-full px-3 py-1">{item.date}</span>
                             </div>
