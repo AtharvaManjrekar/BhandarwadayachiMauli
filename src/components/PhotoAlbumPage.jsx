@@ -22,11 +22,13 @@ import {
 export default function PhotoAlbumPage({ albumCategory = 'navratri', onNavigateToHome, onNavigateToDonation, onNavigateToAlbum }) {
   const members = [
     { name: "अध्यक्ष: राजन तांडेल", role: "अध्यक्ष", phone: "+91 9702479990", image: null },
+    { name: "उपाध्यक्ष: कपिल पाटील", role: "उपाध्यक्ष", phone: "+91 7021654908", image: null },
     { name: "सचिव: मल्यया लोकम", role: "सचिव", phone: "+91 9967567383", image: null },
+    { name: "सचिव: अमित काटविलकर", role: "सचिव", phone: "+91 9987294540", image: null },
     { name: "कोषाध्यक्ष: अजय गुरव", role: "कोषाध्यक्ष", phone: "+91 9867489964", image: null },
-    { name: "सदस्य: अमित काटविलकर", role: "कार्यकारी सदस्य", phone: "+91 9987294540", image: null },
     { name: "सदस्य: मंगेश लोकम", role: "कार्यकारी सदस्य", phone: "+91 7671013468", image: null },
     { name: "सदस्य: राजेश नारकर", role: "सदस्य", phone: "+91 8169436196", image: null },
+    { name: "सदस्य: मेल्विन किन्नी", role: "सदस्य", phone: "+91 9892211407", image: null },
     { name: "सदस्य: ओमकार नायडू", role: "सदस्य", phone: "+91 7506753320", image: null },
     { name: "सदस्य: ओमकार पांढरे", role: "सदस्य", phone: "+91 8433638032", image: null },
     { name: "सदस्य: हार्दिक नाईक", role: "सदस्य", phone: "+91 9820347924", image: null },
