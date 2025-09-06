@@ -35,7 +35,7 @@ export default function DonationPage() {
     { name: "सदस्य: हार्दिक नाईक", role: "सदस्य", phone: "+91 9820347924", image: null },
     { name: "सदस्य: सागर पांढरे", role: "सदस्य", phone: "+91 9920765590", image: null },
     { name: "सदस्य: प्रशांत मोरे", role: "सदस्य", phone: "+91 7977511053", image: null },
-    // { name: "सदस्य: प्रशांत मोरे", role: "सदस्य", phone: "+91 7977511053", image: null },
+    { name: "सदस्य: अल्पेश मुळे", role: "सदस्य", phone: "+91 7738617940", image: null },
     { name: "सदस्य: साहिल कदम", role: "सदस्य", phone: "+91 9372285988", image: null },
     { name: "सदस्य: रोहन तांडेल", role: "सदस्य", phone: "+91 9930258645", image: null },
    
