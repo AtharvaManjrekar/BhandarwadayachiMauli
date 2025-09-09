@@ -246,7 +246,7 @@ export default function DonationPage() {
                     </div>
                   </div>
                   <p className="text-sm text-gray-500">MR. SAHIL KADAM</p>
-                  <p className="text-sm text-gray-500">++91 93722 85988</p>
+                  <p className="text-sm text-gray-500">+91 93722 85988</p>
                 </div>
                 <div className="space-y-4">
                   <p className="text-lg text-white devanagari-font font-semibold bg-orange-800/30 backdrop-blur-sm rounded-lg p-4 border border-yellow-400/30">
